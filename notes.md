@@ -1,4 +1,6 @@
 # CS 260 Notes
+1/9/25  
+Today I created a repository using the provided 260 start up template. I also downloaded VS code. I also begain learning markdown syntax for writing in github.
 
 [My startup](https://simon.cs260.click)
 
