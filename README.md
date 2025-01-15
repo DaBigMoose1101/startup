@@ -32,13 +32,42 @@ Food and social media are the most powerful community builders. So I decided to 
 
 ### Design
 
-![Design image](WebSketch.jpg)
+![Home Page Design](WebSketch.jpg)
 
 
 
 ```
-Homepage layout of Meal-Share.com
+Home page layout of MealShare.com
 ```
+
+
+![Profile Page Design](ProfilePage.jpg)
+
+
+
+```
+Profile page layout of MealShare.com
+```
+
+
+![How-To Video Page Design](HowToPage.jpg)
+
+
+
+```
+How-To video page layout of MealShare.com
+```
+
+
+![Recipe Page Design](RecipePage.jpg)
+
+
+
+```
+Recipe page layout of MealShare.com
+```
+
+
 
 ### Key features
 
