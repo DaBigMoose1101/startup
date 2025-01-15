@@ -28,19 +28,16 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 ### Elevator pitch
 
 Food and social media are the most powerful community builders. So I decided to combine the two. Meal share is a social media platform built around sharing food, recipes, and cultures, and will also provide a place to launch and support culinary businesses. Users will create a profile where they can save and access recipes, like and comment of others posts, make posts about thier culinary adventures, access how to videos, and expand their culinary horizons. Users will be incouraged to make extra food and sell it to thier neighbors. Imagine if ride sharing app like uber and a social media platform like instagram teamed up to build society through food that is Meal Share.
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
 
 ### Design
 
-![Design image](placeholder.png)
+![Design image](WebSketch.jpg)
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
-```mermaid
-sequenceDiagram
-    actor You
-    actor Website
-    You->>Website: Replace this with your design
+
+```
+WebSketch.jpg
 ```
 
 ### Key features
