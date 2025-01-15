@@ -3,7 +3,7 @@
 [My Notes](notes.md)
 ## Meal Share Introduction
 
-Meal Share is a social media platform that allows people to share meals, recipes, and other foods. This platform will provide a place for people to share their food with their communities. People can use this platform to launch their culinary businesses. This platform will give users the ability to peruse different posts about meals, post about the foods they enjoy making, access how-to videos, save and share family recipes, host live and digital events, buy or sell culinary delights, participate in or host classes, and get to know others in their communities. Nothing brings people together like food. The main income for this platform will be from individuals and businesses advertising products and services to nonpaying users.  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Meal Share is a social media platform that allows people to share meals, recipes, and other foods. This platform will provide a place for people to share their food with their communities. People can use this platform to launch their culinary businesses. This platform will give users the ability to peruse different posts about meals, post about the foods they enjoy making, access how-to videos, save and share family recipes, host live and digital events, buy or sell culinary delights, participate in or host classes, and get to know others in their communities. Nothing brings people together like food. The main income for this platform will be from individuals and businesses advertising products and services to nonpaying users.
 
 
 > [!NOTE]
@@ -19,15 +19,15 @@ Meal Share is a social media platform that allows people to share meals, recipes
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] Proper use of Markdown
+- [x] Proper use of Markdown
 - [x] A concise and compelling elevator pitch
 - [x] Description of key features
 - [x] Description of how you will use each technology
-- [ ] One or more rough sketches of your application. Images must be embedded in this file using Markdown image references.
+- [x] One or more rough sketches of your application. Images must be embedded in this file using Markdown image references.
 
 ### Elevator pitch
 
-Food and social media are the most powerful community builders. So I decided to combine the two. Meal share is a social media platform built around sharing food, recipes, and cultures, and will also provide a place to launch and support culinary businesses. Users will create a profile where they can save and access recipes, like and comment of others posts, make posts about thier culinary adventures, access how to videos, and expand their culinary horizons. Users will be incouraged to make extra food and sell it to thier neighbors. Imagine if ride sharing app like uber and a social media platform like instagram teamed up to build society through food that is Meal Share.
+Food and social media are the most powerful community builders. So I decided to combine the two. Meal Share is a social media platform built around sharing food, recipes, and cultures, and will also provide a place to launch and support culinary businesses. Users will create a profile where they can save and access recipes, like and comment on others' posts, make posts about their culinary adventures, access how-to videos, and expand their culinary horizons. Users will be encouraged to make extra food and sell it to their neighbors. Imagine if a ride-sharing app like Uber and a social media platform like Instagram teamed up to build society through food that is Meal Share.
 
 
 ### Design
@@ -37,19 +37,19 @@ Food and social media are the most powerful community builders. So I decided to 
 
 
 ```
-WebSketch.jpg
+Homepage layout of Meal-Share.com
 ```
 
 ### Key features
 
 - A main feed where users view posts from people and groups they follow.
-- A how to video page where users can search for videos to help in their culinary adventures.
+- A how-to video page where users can search for videos to help in their culinary adventures.
 - A profile page with relevant information about the user such as posts, recipes, A list of the users alergies, and followers/people they follow.
-- A Find-A-Meal page where users can find available home cooked meals in their area.
-- Recommended for you/Food Near you (IP Stack WebApi where we gather users interests and location based on their IP address)
+- A Find-A-Meal page where users can find available home-cooked meals in their area.
+- Recommended for you/Food Near you (IP Stack WebApi where we gather users' interests and location based on their IP address)
 - Search bar used to find people, businesses, pages, recipies, food. The user will be notified if an item has alergens they marked when they created a profile.
 - Business/group page creation.
-- Ingedient Analyzer (Open Food Facts API)
+- Ingredient Analyzer (Open Food Facts API)
 
 
 ### Technologies
@@ -58,17 +58,17 @@ I am going to use the required technologies in the following ways.
 
 - **HTML** - HTML will be used to create and format all of the pages mentioned in the key features list. It will also be used to format the profile creating page, the login page, and provide hyperlinks to navigate the social media platform. HTML will also be used to access different web pages such as google maps.  
 - **CSS** - CSS will be used to ensure coherent and consistent styling for all pages.  
-- **React** - Users will be able to interact with like, comment, and search buttons. They will also be able to select a user's profile or name to view the other user's profile page. There will also be a navigation bar so they can quickly switch between their feed, available meals page, thier profile page, how-to video page, or create a post. The user will also be able to click on a button access the menu where they can create a group or business page. From the business page users can access the advertising interface. 
-- **Service** - Back end service with end points for:
+- **React** - Users will be able to interact with like, comment, and search buttons. They will also be able to select a user's profile or name to view the other user's profile page. There will also be a navigation bar so they can quickly switch between their feed, available meals page, their profile page, how-to video page, or create a post. The user will also be able to click on a button access the menu where they can create a group or business page. From the business page users can access the advertising interface. 
+- **Service** - Back-end service with endpoints for:
   - Search results
   - Ingredient analysis
   - Advertising interface
   - User authentication
-  - feed managment
+  - feed management
   - Post creation and formatting
   - advertising analytics
   - Retrieving purchased meal status (being prepared, ready for pick-up)
-- **DB/Login** - Store users, user preferences, posts, videos, groups, businesses, registers and login users, user/business location, User friends, Credentials and payment info stored securly in the database, 
+- **DB/Login** - Store users, user preferences, posts, videos, groups, businesses, registers, and login users, user/business location, User friends, Credentials, and payment info stored securely in the database, 
 - **WebSocket** - Broadcasts posts, comments, likes, purchase requests, events, and created group and business pages for other users to view.
 
 ## 🚀 AWS deliverable
