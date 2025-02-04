@@ -110,15 +110,15 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **HTML pages** - I did not complete this part of the deliverable.
-- [ ] **Proper HTML element usage** - I did not complete this part of the deliverable.
-- [ ] **Links** - I did not complete this part of the deliverable.
-- [ ] **Text** - I did not complete this part of the deliverable.
-- [ ] **3rd party API placeholder** - I did not complete this part of the deliverable.
-- [ ] **Images** - I did not complete this part of the deliverable.
-- [ ] **Login placeholder** - I did not complete this part of the deliverable.
-- [ ] **DB data placeholder** - I did not complete this part of the deliverable.
-- [ ] **WebSocket placeholder** - I did not complete this part of the deliverable.
+- [x] **HTML pages** - I created 10 html pages with index.html as the login page.
+- [x] **Proper HTML element usage** - I worked on the formating to the best of my abilities and updated the elements of each page as necessary.
+- [x] **Links** - I made links between each of the pages.
+- [x] **Text** - I have little descriptions of elements I don't know how to add and texts as place holders.
+- [x] **3rd party API placeholder** - I have a place holder for google maps.
+- [x] **Images** - I have place holder images for different elements like posts, recipes, and meals.
+- [x] **Login placeholder** - see deliverable 1.
+- [x] **DB data placeholder** - posts will be saved in the DB and randomly added to users feeds as the scroll.
+- [x] **WebSocket placeholder** - I did complete this part of the deliverable.
 
 ## 🚀 CSS deliverable
 
