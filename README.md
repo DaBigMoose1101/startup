@@ -127,7 +127,7 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [x] **Header, footer, and main content body** - Made all of the pages uniform and added elements to differentiate between pages.
 - [x] **Navigation elements** - All navigation elements function. I changed the format of buttons.
 - [x] **Responsive to window resizing** - I tested resizing by moving the window around and resizing the window
-- [x] **Application elements** - Added comment and like buttons. I have not yet figured out how to add live maps for my third party api.
+- [x] **Application elements** - Added comment and like buttons. I have not yet figured out how to add live maps for my third party api. I also need to make procedural post generation for feeds/search results and all other elements. We have not covered how to do this. We also have not covered how to make interactable elements and I tried to insert as many placeholders for these elements as possible.
 - [x] **Application text content** - set place holders for all text elements
 - [x] **Application images** - I have place holder photos where ever photos will be
 
