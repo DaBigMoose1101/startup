@@ -19,90 +19,93 @@
         <header>
           <nav>
             <menu>
-              <div> 
-                <a href="home.html">Home</a>
-                <a href="recipes.html">Recipes</a>
-                <a href="meals.html">Find-A-Meal</a>
-                <a href="pages.html">Groups</a>
-                <a href="createmeal.html">Groups</a>
-                <a href="profile.html">Profile</a>
-                <a href="index.html">Logout</a>
-              </div>
-              <div>
-                <form method="get" action="search.html">
-                        <span>search</span>
-                        <input type="text" placeholder="search" />
-                        <button type="submit">Search</button>
-                </form>
-              </div>
+              <div><a href="home.html">Home</a></div>
+              <div><a href="recipes.html">Recipes</a></div>
+              <div><a href="meals.html">Find-A-Meal</a></div>
+              <a href="createmeal.html">New Meal</a>
+              <div><a href="pages.html">Groups</a></div>
+              <div><a href="profile.html">Profile</a></div>
+              <div><a href="index.html">Logout</a></div>
             </menu>
+  
+          <div>
+            <form method="get" action="search.html">
+              <span>search</span>
+              <input type="text" placeholder="search" />
+              <button type="submit" class="btn btn-primary">Search</button>
+              </form>
+          </div>
+  
           </nav>
+          
         </header>
         <main>
           <table>
             <tr>
-              <th>Pages</th>
-              <th>Meals-Near-You</th>
+              <th>Your Pages</th>
+              <th>Meals</th>
               <th>Recommended</th>
             </tr>
             <tr>
-              <td style="vertical-align: top;">
-              <ol>
-                <li>Page A</li>
-                <li>Page B</li>
-                <li>Page C</li>
-                <li>Page D</li>
-              </ol>
+              <td style="vertical-align: top;" id="side">
+              
+                <div>Page A</div>
+                <div>Page B</div>
+                <div>Page C</div>
+                <div>Page D</div>
+  
               </td>
-              <td style="vertical-align: top;">
-                <ul style="list-style: none;">
-                  <li>
-
+              <td style="vertical-align: top;" id="feed">
+  
                     <div class="post">
                         <img alt="post1" src="./PostPlaceHolder1.jpg"/>
-                        <br>
-                        <p>Creator's username here</p>
+                        <div class="postReact">
+                          <button type="react" class="btn btn-primary btn-sm">Love It</button>
+                          <button type="react" class="btn btn-primary btn-sm">Comment</button>
+                        </div>
+                        <p class="username">Creator's username here</p>
                         <p>Description of post here</p>
                         
                     </div>
-                </li>
-                <li>
-
+                
+  
                     <div class="post">
-                        <img alt="post1" src="./PostPlaceHolder2.jpg"/>
-                        <p>Creator's username here</p>
+                        <img alt="post2" src="./PostPlaceHolder2.jpg"/>
+                        <div class="postReact">
+                          <button type="react" class="btn btn-primary btn-sm">Love It</button>
+                          <button type="react" class="btn btn-primary btn-sm">Comment</button>
+                        </div>
+                        <p class="username">Creator's username here</p>
                         <p>Description of post here</p>
                     </div>
-                </li>
-                <li>
+                
                     <div class="post">
-                        <img alt="post1" src="./PostPlaceHolder3.jpg"/>
-                        <p>Creator's username here</p>
+                        <img alt="post3" src="./PostPlaceHolder3.jpg"/>
+                        <div class="postReact">
+                          <button type="react" class="btn btn-primary btn-sm">Love It</button>
+                          <button type="react" class="btn btn-primary btn-sm">Comment</button>
+                        </div>
+                        <p class="username">Creator's username here</p>
                         <p>Description of post here</p>
                     </div>
-                </li>
-                    </ul>
+                
                 </td>
-                <td style="vertical-align: top;">
-                    <ol>
-                      <li>Meal A</li>
-                      <li>Meal B</li>
-                      <li>Meal C</li>
-                      <li>Meal D</li>
-                    </ol>
+                <td style="vertical-align: top;" id="side">
+  
+                      <div>Meal A</div>
+                      <div>Meal B</div>
+                      <div>Meal C</div>
+                      <div>Meal D</div>
+  
                     </td>
             </tr>
             
           </table>
         </main>
         <footer>
-            <br />
             <span class="text-reset">Porter Nichols</span>
-            <br />
             <a href="https://github.com/DaBigMoose1101/startup">GitHub</a>
         </footer>
-    
-    </body>
-
-</body>
+      
+      </body>
 </html>
