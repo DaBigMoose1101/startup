@@ -69,6 +69,13 @@
     border-style: solid;
     margin: 5px;
 }
+.post img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto; /* Centers images in the middle column */
+}
+
   
   
   
