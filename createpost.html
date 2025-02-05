@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MealShare</title>
     <link rel="stylesheet" href="main.css" />
+    <link rel="stylesheet" href="create.css" />
 
     <!-- Include bootstrap CSS framework -->
     <link
@@ -54,24 +55,26 @@
   
               </td>
               <td >
-
-                <h6>Create Post</h6>
                     <form method="post" action="submit-post">
+                      <div>
                         <img alt="imgplaceholder" src="./AddPhotoHere.jpg" />
-                        <br>
+                      </div>                    
+                      <div>
                         <label for="photo">Photo: </label>
                         <input id="photo" type="file" accept="img/*" />
-                        <br>
+                      </div>
+                      <div>
                         <label for="name">Post Title: </label>
                         <input id="name" type="text" placeholder="Enter Post Title">
-                        <br>
-                        <label for="description">Page Description: </label>
-                        <textarea id="description" name="pagedescription" rows="6" cols="50" placeholder="What's on your mind?"></textarea>
-                        <br><br>
+                      </div>
+                      <div>
+                        <label for="description">Post Description: </label>
+                        <textarea id="description" name="postdescription" rows="6" cols="50" placeholder="What's on your mind?"></textarea>
+                      </div>
+                      <div>
                         <button type="submit">Create Post</button>
-
-                    </form>
-                </div>
+                      </div>
+                  </form>
                 
                 </td>
                 <td style="vertical-align: top;" id="side">

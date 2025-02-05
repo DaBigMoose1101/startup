@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MealShare</title>
     <link rel="stylesheet" href="main.css" />
+    <link rel="stylesheet" href="create.css" />
 
     <!-- Include bootstrap CSS framework -->
     <link
@@ -54,25 +55,26 @@
   
               </td>
               <td >
-
-                <h6>Create Page</h6>
-                    <form method="post" action="submit-post">
-                        <img alt="imgplaceholder" src="./AddPhotoHere.jpg" />
-                        <br>
-                        <label for="photo">Photo: </label>
-                        <input id="photo" type="file" accept="img/*" />
-                        <br>
-                        <label for="name">Page Name: </label>
-                        <input id="name" type="text" placeholder="Enter Page Name">
-                        <br>
-                        <label for="description">Page Description: </label>
-                        <textarea id="description" name="pagedescription" rows="6" cols="50" placeholder="Description"></textarea>
-                        <br><br>
-                        <button type="submit">Create Page</button>
-
-                    </form>
-                </div>
-                
+                <form method="post" action="submit-post">
+                    <div>
+                      <img alt="imgplaceholder" src="./AddPhotoHere.jpg" />
+                    </div>                    
+                    <div>
+                      <label for="photo">Photo: </label>
+                      <input id="photo" type="file" accept="img/*" />
+                    </div>
+                    <div>
+                      <label for="name">Page Name: </label>
+                      <input id="name" type="text" placeholder="Enter Page Name">
+                    </div>
+                    <div>
+                      <label for="description">Page Description: </label>
+                      <textarea id="description" name="pagedescription" rows="6" cols="50" placeholder="Description"></textarea>
+                    </div>
+                    <div>
+                      <button type="submit">Create Page</button>
+                    </div>
+                </form>                
                 </td>
                 <td style="vertical-align: top;" id="side">
 

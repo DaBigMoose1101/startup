@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MealShare</title>
     <link rel="stylesheet" href="main.css" />
+    <link rel="stylesheet" href="create.css" />
 
     <!-- Include bootstrap CSS framework -->
     <link
@@ -54,27 +55,29 @@
   
               </td>
               <td >
-
-                <h6>Create Recipe</h6>
                     <form method="post" action="submit-post">
+                      <div>
                         <img alt="imgplaceholder" src="./AddPhotoHere.jpg" />
-                        <br>
+                      </div>                    
+                      <div>
                         <label for="photo">Photo: </label>
                         <input id="photo" type="file" accept="img/*" />
-                        <br>
+                      </div>
+                      <div>
                         <label for="name">Recipe Name: </label>
                         <input id="name" type="text" placeholder="Enter Recipe Name">
-                        <br>
+                      </div>
+                      <div>
                         <label for="ingredients">Ingredients: </label>
                         <textarea id="ingredients" name="ingredientlist" rows="6" cols="50" placeholder="List ingredients here"></textarea>
-                        <br><br>
+                      <div>
                         <label for="instructions">Instructions: </label>
                         <textarea id="instructions" name="instructionlist" rows="6" cols="50" placeholder="List instructions here"></textarea>
-                        <br><br>
+                      </div>
+                      <div>
                         <button type="submit">Create Recipe</button>
-
-                    </form>
-                </div>
+                      </div>
+                  </form>
                 
                 </td>
                 <td style="vertical-align: top;" id="side">

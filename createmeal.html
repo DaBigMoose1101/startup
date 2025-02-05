@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MealShare</title>
     <link rel="stylesheet" href="main.css" />
+    <link rel="stylesheet" href="create.css" />
 
     <!-- Include bootstrap CSS framework -->
     <link
@@ -55,25 +56,32 @@
               </td>
               <td >
 
-                <h6>Create Meal</h6>
+
                     <form method="post" action="submit-post">
+                      <div>
                         <img alt="imgplaceholder" src="./AddPhotoHere.jpg" />
-                        <br>
+                      </div>
+                    
+                      <div>
                         <label for="photo">Photo: </label>
                         <input id="photo" type="file" accept="img/*" />
-                        <br>
+                      </div>
+                      <div>
                         <label for="name">Meal Name: </label>
                         <input id="name" type="text" placeholder="Enter Recipe Name">
-                        <br>
+                      </div>
+                      <div>
                         <label for="pickup">Location: </label>
                         <input id="pickup" type="text" placeholder="Enter pickup Location">
-                        <br>
-                        <br>
+                      </div>
+                      <div>
                         <p>insert location on google maps here once functionality added</p>
                         <label for="ingredients">Ingredients: </label>
                         <textarea id="ingredients" name="ingredientlist" rows="6" cols="50" placeholder="List ingredients here"></textarea>
-                        <br><br>
+                      </div>
+                      <div>
                         <button type="submit">Post Meal</button>
+                      </div>
 
                     </form>
                 </div>
