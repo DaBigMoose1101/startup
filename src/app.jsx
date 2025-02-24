@@ -56,7 +56,7 @@ export default function App() {
       <a href="https://github.com/DaBigMoose1101/startup">GitHub</a>
   </footer>    
   </BrowserRouter>
-  )
+  );
   function NotFound() {
     return <main className="container-fluid bg-secondary text-center">404: Return to sender. Address unknown.</main>;
   }
