@@ -12,6 +12,7 @@ import { CreateMeal } from './createmeal/createmeal';
 import { CreatePage } from './createpage/createpage';
 import { CreatePost } from './createpost/createpost';
 import { CreateRecipe } from './createrecipe/createrecipe';
+import { Nav } from 'react-bootstrap';
 
 export default function App() {
   return (
