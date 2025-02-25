@@ -9,13 +9,16 @@ export function CreatePost() {
   return (
     <main>
           <table>
+            <thead>
             <tr>
               <th>Your Pages</th>
               <th>Create Post</th>
               <th>Recommended</th>
             </tr>
-            <tr style="vertical-align: top;">
-              <td style="vertical-align: top;" id="side">
+            </thead>
+            <tbody>
+            <tr >
+              <td id="side">
             
                 <div>Page A</div>
                 <div>Page B</div>
@@ -24,20 +27,20 @@ export function CreatePost() {
   
               </td>
               <td >
-                    <form method="post" onSubmit={()=>navigate('/home')}>
+                    <form method="get" onSubmit={()=>navigate('/home')}>
                       <div>
                         <img alt="imgplaceholder" src="./AddPhotoHere.jpg" />
                       </div>                    
                       <div>
-                        <label for="photo">Photo: </label>
+                        <label htmlFor="photo">Photo: </label>
                         <input id="photo" type="file" accept="img/*" />
                       </div>
                       <div>
-                        <label for="name">Post Title: </label>
+                        <label htmlFor="name">Post Title: </label>
                         <input id="name" type="text" placeholder="Enter Post Title" />
                       </div>
                       <div>
-                        <label for="description">Post Description: </label>
+                        <label htmlFor="description">Post Description: </label>
                         <textarea id="description" name="postdescription" rows="6" cols="50" placeholder="What's on your mind?"></textarea>
                       </div>
                       <div>
@@ -46,7 +49,7 @@ export function CreatePost() {
                   </form>
                 
                 </td>
-                <td style="vertical-align: top;" id="side">
+                <td id="side">
 
                   <div>Meal A</div>
                   <div>Meal B</div>
@@ -55,7 +58,7 @@ export function CreatePost() {
 
                 </td>
             </tr>
-            
+            </tbody>
           </table>
         </main>
   );

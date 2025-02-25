@@ -9,13 +9,16 @@ export function CreateMeal() {
   return (
     <main>
           <table>
+            <thead>
             <tr>
               <th>Your Pages</th>
               <th>Create Meal</th>
               <th>Recommended</th>
             </tr>
-            <tr style="vertical-align: top;">
-              <td style="vertical-align: top;" id="side">
+            </thead>
+            <tbody>
+            <tr>
+              <td id="side">
             
                 <div>Page A</div>
                 <div>Page B</div>
@@ -26,26 +29,26 @@ export function CreateMeal() {
               <td >
 
 
-                    <form method="post" onSubmit={()=>navigate('/meals')}>
+                    <form method="get" onSubmit={()=>navigate('/meals')}>
                       <div>
                         <img alt="imgplaceholder" src="./AddPhotoHere.jpg" />
                       </div>
                     
                       <div>
-                        <label for="photo">Photo: </label>
+                        <label htmlFor="photo">Photo: </label>
                         <input id="photo" type="file" accept="img/*" />
                       </div>
                       <div>
-                        <label for="name">Meal Name: </label>
+                        <label htmlFor="name">Meal Name: </label>
                         <input id="name" type="text" placeholder="Enter Recipe Name"/>
                       </div>
                       <div>
-                        <label for="pickup">Location: </label>
+                        <label htmlFor="pickup">Location: </label>
                         <input id="pickup" type="text" placeholder="Enter pickup Location"/>
                       </div>
                       <div>
                         <p>insert location on google maps here once functionality added</p>
-                        <label for="ingredients">Ingredients: </label>
+                        <label htmlFor="ingredients">Ingredients: </label>
                         <textarea id="ingredients" name="ingredientlist" rows="6" cols="50" placeholder="List ingredients here"></textarea>
                       </div>
                       <div>
@@ -55,7 +58,7 @@ export function CreateMeal() {
                     </form>
                 
                 </td>
-                <td style="vertical-align: top;" id="side">
+                <td id="side">
 
                   <div>Meal A</div>
                   <div>Meal B</div>
@@ -64,7 +67,7 @@ export function CreateMeal() {
 
                 </td>
             </tr>
-            
+            </tbody>
           </table>
         </main>
   );

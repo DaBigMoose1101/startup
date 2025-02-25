@@ -9,13 +9,16 @@ export function CreatePage() {
   return (
     <main>
           <table>
+            <thead>
             <tr>
               <th>Your Pages</th>
               <th>Create Page</th>
               <th>Recommended</th>
             </tr>
-            <tr style="vertical-align: top;">
-              <td style="vertical-align: top;" id="side">
+            </thead>
+            <tbody>
+            <tr>
+              <td id="side">
             
                 <div>Page A</div>
                 <div>Page B</div>
@@ -24,20 +27,20 @@ export function CreatePage() {
   
               </td>
               <td >
-                <form method="post" onSubmit={()=>navigate('/pages')}>
+                <form method="get" onSubmit={()=>navigate('/pages')}>
                     <div>
                       <img alt="imgplaceholder" src="./AddPhotoHere.jpg" />
                     </div>                    
                     <div>
-                      <label for="photo">Photo: </label>
+                      <label htmlFor="photo">Photo: </label>
                       <input id="photo" type="file" accept="img/*" />
                     </div>
                     <div>
-                      <label for="name">Page Name: </label>
+                      <label htmlFor="name">Page Name: </label>
                       <input id="name" type="text" placeholder="Enter Page Name" />
                     </div>
                     <div>
-                      <label for="description">Page Description: </label>
+                      <label htmlFor="description">Page Description: </label>
                       <textarea id="description" name="pagedescription" rows="6" cols="50" placeholder="Description"></textarea>
                     </div>
                     <div>
@@ -45,7 +48,7 @@ export function CreatePage() {
                     </div>
                 </form>                
                 </td>
-                <td style="vertical-align: top;" id="side">
+                <td id="side">
 
                   <div>Meal A</div>
                   <div>Meal B</div>
@@ -54,7 +57,7 @@ export function CreatePage() {
 
                 </td>
             </tr>
-            
+            </tbody>
           </table>
         </main>
   );

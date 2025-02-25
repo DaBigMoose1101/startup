@@ -9,13 +9,16 @@ export function CreateRecipe() {
   return (
     <main>
           <table>
+            <thead>
             <tr>
               <th>Your Pages</th>
               <th>Create recipe</th>
               <th>Recommended</th>
             </tr>
-            <tr style="vertical-align: top;">
-              <td style="vertical-align: top;" id="side">
+            </thead>
+            <tbody>
+            <tr >
+              <td id="side">
             
                 <div>Page A</div>
                 <div>Page B</div>
@@ -24,24 +27,24 @@ export function CreateRecipe() {
   
               </td>
               <td >
-                    <form method="post" onSubmit={()=>navigate('/recipes')}>
+                    <form method="get" onSubmit={()=>navigate('/recipes')}>
                       <div>
                         <img alt="imgplaceholder" src="./AddPhotoHere.jpg" />
                       </div>                    
                       <div>
-                        <label for="photo">Photo: </label>
+                        <label htmlFor="photo">Photo: </label>
                         <input id="photo" type="file" accept="img/*" />
                       </div>
                       <div>
-                        <label for="name">Recipe Name: </label>
+                        <label htmlFor="name">Recipe Name: </label>
                         <input id="name" type="text" placeholder="Enter Recipe Name"/>
                       </div>
                       <div>
-                        <label for="ingredients">Ingredients: </label>
+                        <label htmlFor="ingredients">Ingredients: </label>
                         <textarea id="ingredients" name="ingredientlist" rows="6" cols="50" placeholder="List ingredients here"></textarea>
                       </div>
                       <div>
-                        <label for="instructions">Instructions: </label>
+                        <label htmlFor="instructions">Instructions: </label>
                         <textarea id="instructions" name="instructionlist" rows="6" cols="50" placeholder="List instructions here"></textarea>
                       </div>
                       <div>
@@ -50,7 +53,7 @@ export function CreateRecipe() {
                   </form>
                 
                 </td>
-                <td style="vertical-align: top;" id="side">
+                <td id="side">
 
                   <div>Meal A</div>
                   <div>Meal B</div>
@@ -59,7 +62,7 @@ export function CreateRecipe() {
 
                 </td>
             </tr>
-            
+            </tbody>
           </table>
         </main>
   );
