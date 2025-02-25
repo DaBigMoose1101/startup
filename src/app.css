@@ -57,9 +57,9 @@
   }
   
 
-  th:nth-child(1), td:nth-child(1) { width: 20%; text-align:left; }
+  th:nth-child(1), td:nth-child(1) { width: 20%; text-align:left; vertical-align: top; }
   th:nth-child(2), td:nth-child(2) { width: 60%; text-align: center;}
-  th:nth-child(3), td:nth-child(3) { width: 20%; text-align:right;} 
+  th:nth-child(3), td:nth-child(3) { width: 20%; text-align:right; vertical-align: top;} 
   
   .post {
     display: flex;
@@ -75,6 +75,21 @@
     display: block;
     margin: 0 auto; /* Centers images in the middle column */
 }
+
+.page_Specific_Menu {
+  display: flex;
+  justify-content: space-between; /* Ensures left and center alignment */
+  align-items: center; /* Aligns items vertically */
+  width: 100%; /* Ensures full width */
+}
+
+.search-container {
+  flex-grow: 1; /* Allows it to take up available space */
+  display: flex;
+  justify-content: center; /* Centers the search box */
+}
+
+  
 
   
   

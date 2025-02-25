@@ -2,12 +2,27 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-router-dom';
 import {useNavigate } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
 
 
 export function Home() {
     const navigate = useNavigate();
   return (
     <main>
+      <div className="page_Specific_Menu">
+        <div className="search-container">
+          <form id="search" method="get" onSubmit={() => navigate('/search')}>
+            <span>search</span>
+            <input type="text" placeholder="search" />
+            <button type="submit" className="btn btn-primary">Search</button>
+          </form>
+        </div>
+            <span>
+            <Button variant="primary" onClick={() => navigate('/createpost')}>
+              Create Post
+            </Button>
+            </span>
+        </div>
         <table>
           <thead>
           <tr>

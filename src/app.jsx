@@ -12,6 +12,7 @@ import { CreateMeal } from './createmeal/createmeal';
 import { CreatePage } from './createpage/createpage';
 import { CreatePost } from './createpost/createpost';
 import { CreateRecipe } from './createrecipe/createrecipe';
+import { Search } from './search/search';
 import { Nav } from 'react-bootstrap';
 
 export default function App() {
@@ -29,14 +30,6 @@ export default function App() {
             <div className="nav-item"><NavLink className="nav-link" to="">LogOut</NavLink></div>
           </menu>
 
-        <div>
-          <form id="search" method="get" onSubmit={()=> navigate('/home')}>
-            <span>search</span>
-            <input type="text" placeholder="search" />
-            <button type="submit" className="btn btn-primary">Search</button>
-            </form>
-        </div>
-
         </nav>
       </header>
       <Routes>
@@ -51,6 +44,7 @@ export default function App() {
       <Route path='/createpage' element={<CreatePage />} />
       <Route path='/createpost' element={<CreatePost />} />
       <Route path='/createrecipe' element={<CreateRecipe />} />
+      <Route path='/search' element={<Search />} />
       <Route path='*' element={<NotFound />} />
     </Routes>
       <footer>
