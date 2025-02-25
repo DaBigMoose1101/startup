@@ -21,19 +21,6 @@ export function Pages() {
               Create Page
             </Button>
             </span>
-        </div><div className="page_Specific_Menu">
-        <div className="search-container">
-          <form id="search" method="get" onSubmit={() => navigate('/search')}>
-            <span>search</span>
-            <input type="text" placeholder="search" />
-            <button type="submit" className="btn btn-primary">Search</button>
-          </form>
-        </div>
-            <span>
-            <Button variant="primary" onClick={() => navigate('/createmeal')}>
-              Create Meal
-            </Button>
-            </span>
         </div>
           <table>
             <thead>

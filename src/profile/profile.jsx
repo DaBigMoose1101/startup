@@ -18,7 +18,7 @@ export function Profile() {
           </form>
         </div>
             <span>
-            <Button variant="primary" onClick={() => navigate('/post')}>
+            <Button variant="primary" onClick={() => navigate('/createpost')}>
               Create Post
             </Button>
             </span>
