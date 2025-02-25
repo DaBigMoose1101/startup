@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-router-dom';
 import {useNavigate } from 'react-router-dom';
 
-export function Scores() {
+export function Pages() {
     const navigate = useNavigate();
   return (
     <main>
@@ -47,13 +47,13 @@ export function Scores() {
                         <p>Description of post here</p>
                     </div>
                 
-                    <div class="post">
+                    <div className="post">
                         <img alt="post3" src="./PostPlaceHolder3.jpg"/>
                         <div className="postReact">
                           <button type="react" className="btn btn-primary btn-sm">Love It</button>
                           <button type="react" className="btn btn-primary btn-sm">Comment</button>
                         </div>
-                        <p class="username">Creator's username here</p>
+                        <p className="username">Creator's username here</p>
                         <p>Description of post here</p>
                     </div>
                 

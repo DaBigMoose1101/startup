@@ -35,7 +35,7 @@ export function Recipes() {
               </div>
           
 
-              <div class="post">
+              <div className="post">
                   <img alt="post2" src="./PostPlaceHolder2.jpg"/>
                   <div className="postReact">
                     <button type="react" className="btn btn-primary btn-sm">Love It</button>

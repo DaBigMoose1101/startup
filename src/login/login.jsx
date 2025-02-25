@@ -5,23 +5,23 @@ import 'react-router-dom';
 import {useNavigate } from 'react-router-dom';
 
 
-export function Scores() {
+export function Login() {
     const navigate = useNavigate();
   return (
     <main>
-            <div className="login">
-        <h2>Login</h2>
-        <form method="get" onSubmit={()=> navigate('/home')}>
+        <div className="login">
+            <h2>Login</h2>
+            <form id="Login Form" method="get" onSubmit={()=> navigate('/home')}>
                 <div>
-                    <label for="username">Username</label>
+                    <label htmlFor="username">Username</label>
                     <input type="text" id="username" placeholder="Username" />
                 </div>
                 <div>
-                    <label for="password">Password</label>
+                    <label htmlFor="password">Password</label>
                     <input type="password" id="password" placeholder="Password" />
                 </div>
                 <div>
-                    <button type="submit" class="btn btn-primary">Login</button>
+                    <button type="submit" className="btn btn-primary">Login</button>
                 </div>
             </form>
         </div>

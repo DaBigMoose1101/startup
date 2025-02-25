@@ -1,13 +1,13 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
 import { Login } from './login/login';
 import { Home } from './home/home';
 import { Recipes } from './recipes/recipes';
 import { Meals } from './meals/meals';
 import { Pages } from './pages/pages';
-import { Profile} from './Profile/Profile';
+import { Profile} from './profile/profile';
 import { CreateMeal } from './createmeal/createmeal';
 import { CreatePage } from './createpage/createpage';
 import { CreatePost } from './createpost/createpost';
@@ -15,6 +15,7 @@ import { CreateRecipe } from './createrecipe/createrecipe';
 import { Nav } from 'react-bootstrap';
 
 export default function App() {
+
   return (
     <BrowserRouter>
   <header>
@@ -29,22 +30,23 @@ export default function App() {
           </menu>
 
         <div>
-          <form method="get" action="search.html">
+          <form id="search" method="get" onSubmit={()=> navigate('/home')}>
             <span>search</span>
             <input type="text" placeholder="search" />
-            <button type="submit" class="btn btn-primary">Search</button>
+            <button type="submit" className="btn btn-primary">Search</button>
             </form>
         </div>
 
         </nav>
       </header>
       <Routes>
+      
       <Route path='/home' element={<Home />}/>
       <Route path='/recipes' element={<Recipes />} />
       <Route path='/meals' element={<Meals />} />
       <Route path='/pages' element={<Pages />} />
       <Route path='/profile' element={<Profile />} />
-      <Route path='/login' element={Login}   exact />
+      <Route path='/' element={<Login />}   exact />
       <Route path='/createmeal' element={<CreateMeal />} />
       <Route path='/createpage' element={<CreatePage />} />
       <Route path='/createpost' element={<CreatePost />} />

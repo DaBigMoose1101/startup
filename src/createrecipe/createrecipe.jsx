@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-router-dom';
 import {useNavigate } from 'react-router-dom';
 
-export function Scores() {
+export function CreateRecipe() {
     const navigate = useNavigate();
   return (
     <main>
