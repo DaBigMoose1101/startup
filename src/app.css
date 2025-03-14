@@ -13,7 +13,7 @@
   header{
       flex: 0 80px;
       background: hsl(130, 100%, 30%);
-      align-item: center;
+      align-items: center;
       justify-content: center;
   }
   menu{
@@ -69,7 +69,7 @@
     border-style: solid;
     margin: 5px;
 }
-.post img {
+  .post img {
     max-width: 100%;
     height: auto;
     display: block;

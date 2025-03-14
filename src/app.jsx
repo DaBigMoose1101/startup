@@ -16,8 +16,19 @@ import { Search } from './search/search';
 import { Nav } from 'react-bootstrap';
 
 export default function App() {
+  const map = new Map();
+  const [posts, setPosts] = React.useState([]);
+  const [feedOrder, setFeedOrder] = React.useState([]);
+  const [friends, setFriends] = React.useState([]);
+  
+  React.useEffect(()=>{
+    localStorage.setItem("posts", Json.stringify(posts));
+    localStorage.setItem("feed",Json.stringify(feedOrder));
+    localStorage.setItem("friend", friends);
+  })
 
   return (
+    
     <BrowserRouter>
   <header>
         <nav>
