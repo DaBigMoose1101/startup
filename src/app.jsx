@@ -22,9 +22,9 @@ export default function App() {
   const [friends, setFriends] = React.useState([]);
   
   React.useEffect(()=>{
-    localStorage.setItem("posts", Json.stringify(posts));
-    localStorage.setItem("feed",Json.stringify(feedOrder));
-    localStorage.setItem("friend", friends);
+    localStorage.setItem("posts", JSON.stringify(posts));
+    localStorage.setItem("feed",JSON.stringify(feedOrder));
+    localStorage.setItem("friend", JSON.stringify(friends));
   })
 
   return (

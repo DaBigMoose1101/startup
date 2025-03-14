@@ -3,8 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-router-dom';
 import {useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
-import post from '../postclass/post';
-
+import Post from '../postclass/post';
 
 export function Home() {
     const navigate = useNavigate();
@@ -45,7 +44,7 @@ export function Home() {
             <td id="feed">
 
                   <div className="post">
-                    <post postid="abc"></post>
+                    <Post id="1"></Post>
                       {/* // <img alt="post1" src="./PostPlaceHolder1.jpg"/>
                        <div className="postReact">
                         <button type="react" className="btn btn-primary btn-sm">Love It</button>

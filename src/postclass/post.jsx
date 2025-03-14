@@ -3,14 +3,15 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 
-export function post(id){
-    const [photo, setPhoto] = useState("AddPhotoHere.jpg");
-    const [description, setDescription] = useState("Description of post here");
-    const [likes, setLikes] = useState(0);
-    const [comments, setComments] = useState([]);
-    const [newComment, setNewComment] = useState("");
-    const [author, setAuthor] = useState("")
-    const [Id, setId] = useState(0)
+export function Post({id}){
+    const [posts, setPosts] = React.useState(JSON.parse(localStorage.getItem("posts")) ||[]);
+    const [photo, setPhoto] = React.useState("AddPhotoHere.jpg");
+    const [description, setDescription] = React.useState("Description of post here");
+    const [likes, setLikes] = React.useState(0);
+    const [comments, setComments] = React.useState([]);
+    const [newComment, setNewComment] = React.useState("");
+    const [author, setAuthor] = React.useState("")
+    const [Id, setId] = React.useState(0)
     let postObject = {
         postId: Id,
         postlikes: likes,
@@ -21,7 +22,6 @@ export function post(id){
     };
 
     React.useEffect(()=>{
-        let posts = Json.parse(localStorage.getItem("posts"));
         let Post = posts.find(post => post.postId === id);
         setPhoto(Post.postPhoto)
         setLikes(Post.postlikes)
@@ -35,9 +35,9 @@ export function post(id){
 
     function addComment() {
         if(newComment.trim() !== ""){
-            setComments(comments.push(newComment));
+            setComments([newComment,... comments]);
             setNewComment("");
-            localStorage.setItem(JSON.stringify(postObject));
+            localStorage.setItem(JSON.stringify());
         }
 
     }
