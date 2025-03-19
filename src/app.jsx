@@ -16,17 +16,34 @@ import { Search } from './search/search';
 import { Nav } from 'react-bootstrap';
 
 export default function App() {
-  const map = new Map();
-  const [posts, setPosts] = React.useState([]);
-  const [feedOrder, setFeedOrder] = React.useState([]);
-  const [friends, setFriends] = React.useState([]);
-  
-  React.useEffect(()=>{
-    localStorage.setItem("posts", JSON.stringify(posts));
-    localStorage.setItem("feed",JSON.stringify(feedOrder));
-    localStorage.setItem("friend", JSON.stringify(friends));
-  })
 
+  function addPost(newPost){
+    setPosts([...posts, newPost]);
+    
+  }
+
+  React.useEffect(()=>{
+  const defaultPosts = [{
+    id: 1,
+    likes: 0,
+    description: "description",
+    photo: "PostPlaceHolder1.jpg",
+    comments: [],
+    author: "lee"},
+    
+      {
+        id: 1,
+        likes: 0,
+        description: "description",
+        photo: "PostPlaceHolder1.jpg",
+        comments: [],
+        author: "joe"}
+  ];
+
+  setPosts(defaultPosts);
+},[])
+  
+  const [posts, setPosts] = React.useState([]); 
   return (
     
     <BrowserRouter>
@@ -45,7 +62,7 @@ export default function App() {
       </header>
       <Routes>
       
-      <Route path='/home' element={<Home />}/>
+      <Route path='/home' element={<Home posts={posts}/>}/>
       <Route path='/recipes' element={<Recipes />} />
       <Route path='/meals' element={<Meals />} />
       <Route path='/pages' element={<Pages />} />
@@ -53,7 +70,7 @@ export default function App() {
       <Route path='/' element={<Login />}   exact />
       <Route path='/createmeal' element={<CreateMeal />} />
       <Route path='/createpage' element={<CreatePage />} />
-      <Route path='/createpost' element={<CreatePost />} />
+      <Route path='/createpost' element={<CreatePost addPost={addPost} />} />
       <Route path='/createrecipe' element={<CreateRecipe />} />
       <Route path='/search' element={<Search />} />
       <Route path='*' element={<NotFound />} />

@@ -4,8 +4,23 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-router-dom';
 import {useNavigate } from 'react-router-dom';
 
-export function CreatePost() {
+export function CreatePost({addPost}) {
     const navigate = useNavigate();
+    const [description, setDescription] = React.useState();
+    const [photo, setPhoto] = React.useState();
+  function createPost(){
+    const newPost = {
+      id: 1,
+      likes: 0,
+      description: description,
+      photo: "./AddPhotoHere.jpg",
+      comments: [],
+      author: "bob"};
+
+      addPost(newPost);
+      navigate('/home');
+  }
+
   return (
     <main>
           <table>
@@ -27,13 +42,13 @@ export function CreatePost() {
   
               </td>
               <td >
-                    <form method="get" onSubmit={()=>navigate('/home')}>
+                    
                       <div>
                         <img alt="imgplaceholder" src="./AddPhotoHere.jpg" />
                       </div>                    
                       <div>
                         <label htmlFor="photo">Photo: </label>
-                        <input id="photo" type="file" accept="img/*" />
+                        <input id="photo" type="file" accept="img/*" onChange={(e) => setPhoto(e.target.value)} />
                       </div>
                       <div>
                         <label htmlFor="name">Post Title: </label>
@@ -41,12 +56,12 @@ export function CreatePost() {
                       </div>
                       <div>
                         <label htmlFor="description">Post Description: </label>
-                        <textarea id="description" name="postdescription" rows="6" cols="50" placeholder="What's on your mind?"></textarea>
+                        <textarea id="description" name="postdescription" rows="6" cols="50" placeholder="What's on your mind?" onChange={(e) => setDescription(e.target.value)}></textarea>
                       </div>
                       <div>
-                        <button type="submit">Create Post</button>
+                        <button onClick={createPost}>Create Post</button>
                       </div>
-                  </form>
+                 
                 
                 </td>
                 <td id="side">
