@@ -85,7 +85,7 @@ export default function App() {
       <Route path='/profile' element={<Profile />} />
       <Route path='/createmeal' element={<CreateMeal />} />
       <Route path='/createpage' element={<CreatePage />} />
-      <Route path='/createpost' element={<CreatePost addPost={addPost} />} />
+      <Route path='/createpost' element={<CreatePost addPost={addPost} user={username} />} />
       <Route path='/createrecipe' element={<CreateRecipe />} />
       <Route path='/search' element={<Search />} />
       <Route path='*' element={<NotFound />} />

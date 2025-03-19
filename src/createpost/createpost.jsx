@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-router-dom';
 import {useNavigate } from 'react-router-dom';
 
-export function CreatePost({addPost}) {
+export function CreatePost({addPost, user}) {
     const navigate = useNavigate();
     const [description, setDescription] = React.useState();
     const [photo, setPhoto] = React.useState();
@@ -15,7 +15,7 @@ export function CreatePost({addPost}) {
       description: description,
       photo: "./AddPhotoHere.jpg",
       comments: [],
-      author: "bob"};
+      author: user};
 
       addPost(newPost);
       navigate('/home');
