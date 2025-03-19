@@ -16,14 +16,23 @@ import { Search } from './search/search';
 import { Nav } from 'react-bootstrap';
 
 export default function App() {
-
+  const [username, setUsername] = React.useState(localStorage.getItem('username') || '')
+  const authState = username ? true : false;
+  const [authorized, setAuthorized] = React.useState(authState);
   function addPost(newPost){
     setPosts([...posts, newPost]);
     
   }
 
+  function logout(){
+    localStorage.removeItem("username");
+    localStorage.removeItem("password");
+    setAuthorized(false);
+  
+  }
+
   React.useEffect(()=>{
-  const defaultPosts = [{
+    const defaultPosts = [{
     id: 1,
     likes: 0,
     description: "description",
@@ -39,6 +48,10 @@ export default function App() {
         comments: [],
         author: "joe"}
   ];
+  const storedUser = localStorage.getItem('username');
+    if (storedUser !== "") {
+      setAuthorized(true);
+    }
 
   setPosts(defaultPosts);
 },[])
@@ -49,25 +62,31 @@ export default function App() {
     <BrowserRouter>
   <header>
         <nav>
+          {authorized ? (
           <menu>
             <div className="nav-item"><NavLink className="nav-link" to="home">Home</NavLink></div>
             <div className="nav-item"><NavLink className="nav-link" to="recipes">Recipes</NavLink></div>
             <div className="nav-item"><NavLink className="nav-link" to="meals">Find-A-Meal</NavLink></div>
             <div className="nav-item"><NavLink className="nav-link" to="pages">Pages</NavLink></div>
             <div className="nav-item"><NavLink className="nav-link" to="profile">Profile</NavLink></div>
-            <div className="nav-item"><NavLink className="nav-link" to="">LogOut</NavLink></div>
+            <div className="nav-item"><NavLink className="nav-link" to="" onClick={logout}>LogOut</NavLink></div>
           </menu>
+        ) : null}
 
         </nav>
       </header>
       <Routes>
-      
+      <Route path='/' element={<Login onAuthChange={
+        (username, authorized)=> {
+        setUsername(username);
+        setAuthorized(authorized);
+        }
+      }/>}   exact />
       <Route path='/home' element={<Home posts={posts}/>}/>
       <Route path='/recipes' element={<Recipes />} />
       <Route path='/meals' element={<Meals />} />
       <Route path='/pages' element={<Pages />} />
       <Route path='/profile' element={<Profile />} />
-      <Route path='/' element={<Login />}   exact />
       <Route path='/createmeal' element={<CreateMeal />} />
       <Route path='/createpage' element={<CreatePage />} />
       <Route path='/createpost' element={<CreatePost addPost={addPost} />} />

@@ -6,24 +6,34 @@ import {useNavigate } from 'react-router-dom';
 
 
 export function Login() {
-    const navigate = useNavigate();
+    const navigate = useNavigate({onAuthChange}); 
+    const [username, setUsername] = React.useState("");
+    const [password, setPassword] = React.useState("");
+
+    function handleClick(){
+        if(username !== "" && password !== ""){
+            localStorage.setItem("username", username);
+            localStorage.setItem("password", password);
+            onAuthChange(username, true);
+            navigate("/home");
+        }
+    }
   return (
     <main>
         <div className="login">
             <h2>Login</h2>
-            <form id="Login Form" method="get" onSubmit={()=> navigate('/home')}>
+            
                 <div>
                     <label htmlFor="username">Username</label>
-                    <input type="text" id="username" placeholder="Username" />
+                    <input type="text" id="username" placeholder="Username" onChange={(e) => setUsername(e.target.value)} />
                 </div>
                 <div>
                     <label htmlFor="password">Password</label>
-                    <input type="password" id="password" placeholder="Password" />
+                    <input type="password" id="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)}/>
                 </div>
                 <div>
-                    <button type="submit" className="btn btn-primary">Login</button>
+                    <button onClick={handleClick} className="btn btn-primary">Login</button>
                 </div>
-            </form>
         </div>
     </main>
   );
