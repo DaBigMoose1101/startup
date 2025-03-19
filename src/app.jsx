@@ -24,6 +24,12 @@ export default function App() {
     
   }
 
+  function authorize( username){
+    setUsername(username);
+    setAuthorized(true);
+
+  }
+
   function logout(){
     localStorage.removeItem("username");
     localStorage.removeItem("password");
@@ -48,11 +54,6 @@ export default function App() {
         comments: [],
         author: "joe"}
   ];
-  const storedUser = localStorage.getItem('username');
-    if (storedUser !== "") {
-      setAuthorized(true);
-    }
-
   setPosts(defaultPosts);
 },[])
   
@@ -76,12 +77,7 @@ export default function App() {
         </nav>
       </header>
       <Routes>
-      <Route path='/' element={<Login onAuthChange={
-        (username, authorized)=> {
-        setUsername(username);
-        setAuthorized(authorized);
-        }
-      }/>}   exact />
+      <Route path='/' element={<Login authorize={authorize} />}  exact />
       <Route path='/home' element={<Home posts={posts}/>}/>
       <Route path='/recipes' element={<Recipes />} />
       <Route path='/meals' element={<Meals />} />

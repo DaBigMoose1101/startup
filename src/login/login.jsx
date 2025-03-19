@@ -5,8 +5,8 @@ import 'react-router-dom';
 import {useNavigate } from 'react-router-dom';
 
 
-export function Login() {
-    const navigate = useNavigate({onAuthChange}); 
+export function Login({authorize}) {
+    const navigate = useNavigate(); 
     const [username, setUsername] = React.useState("");
     const [password, setPassword] = React.useState("");
 
@@ -14,7 +14,7 @@ export function Login() {
         if(username !== "" && password !== ""){
             localStorage.setItem("username", username);
             localStorage.setItem("password", password);
-            onAuthChange(username, true);
+            authorize(username);
             navigate("/home");
         }
     }
