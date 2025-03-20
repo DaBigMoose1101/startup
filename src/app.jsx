@@ -37,6 +37,8 @@ export default function App() {
   
   }
 
+  
+
   React.useEffect(()=>{
     const defaultPosts = [{
     id: 1,

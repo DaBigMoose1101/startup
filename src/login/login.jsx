@@ -10,6 +10,9 @@ export function Login({authorize}) {
     const [username, setUsername] = React.useState("");
     const [password, setPassword] = React.useState("");
 
+    const[quote, setQuote] = React.useState("");
+    const[author, setAuthor] = React.useState("");
+
     function handleClick(){
         if(username !== "" && password !== ""){
             localStorage.setItem("username", username);
@@ -18,6 +21,12 @@ export function Login({authorize}) {
             navigate("/home");
         }
     }
+
+    React.useEffect(()=>{
+        setQuote("A recipe has no soul; you, as the cook, must bring soul to the recipe.");
+        setAuthor("Thomas Keller");
+    },[])
+
   return (
     <main>
         <div className="login">
@@ -33,6 +42,10 @@ export function Login({authorize}) {
                 </div>
                 <div>
                     <button onClick={handleClick} className="btn btn-primary">Login</button>
+                </div>
+                <div>
+                    <p>Inspirational quote: {quote}</p>
+                    <p>-{author}</p>
                 </div>
         </div>
     </main>

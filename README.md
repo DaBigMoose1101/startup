@@ -143,8 +143,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **All functionality implemented or mocked out** - I did not complete this part of the deliverable.
-- [ ] **Hooks** - I did not complete this part of the deliverable.
+- [x] **All functionality implemented or mocked out** - Username password and posts persist in local storage. Can create new posts for websocket. Third party api is mocked up as an inspirational cooking quote on login screen
+- [x] **Hooks** - Professor Jensen said to focus on post functionality. I used the hooks to login and create new posts. 
 
 ## 🚀 Service deliverable
 
