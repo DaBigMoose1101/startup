@@ -19,44 +19,33 @@ export default function App() {
   const [username, setUsername] = React.useState(localStorage.getItem('username') || '')
   const authState = username ? true : false;
   const [authorized, setAuthorized] = React.useState(authState);
-  function addPost(newPost){
-    setPosts([...posts, newPost]);
-    
+  async function addPost(newPost){
+    await fetch('/posts/create', {
+      method: posts,
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify(newPost)
+    }); 
   }
 
   function authorize( username){
     setUsername(username);
     setAuthorized(true);
-
   }
 
   function logout(){
     localStorage.removeItem("username");
     localStorage.removeItem("password");
     setAuthorized(false);
-  
   }
 
   
 
   React.useEffect(()=>{
-    const defaultPosts = [{
-    id: 1,
-    likes: 0,
-    description: "description",
-    photo: "PostPlaceHolder1.jpg",
-    comments: [],
-    author: "lee"},
-    
-      {
-        id: 1,
-        likes: 0,
-        description: "description",
-        photo: "PostPlaceHolder1.jpg",
-        comments: [],
-        author: "joe"}
-  ];
-  setPosts(defaultPosts);
+    fetch('/posts/posts')
+    .then((response) => response.json())
+    .then((posts) =>{
+      setPosts(posts);
+    });
 },[])
   
   const [posts, setPosts] = React.useState([]); 

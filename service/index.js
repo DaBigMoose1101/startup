@@ -57,20 +57,19 @@ apiRouter.delete('/auth/logout', async (req, res) => {
 apiRouter.post('/post/create', verifyAuth, (req, res)=>{
     const post = {
         id: req.body.id,
-      likes: req.body.likes,
-      description: req.body.description,
-      photo: req.body.photo,
-      comments: req.body.comments,
-      author: req.body.author
+        likes: req.body.likes,
+        description: req.body.description,
+        photo: req.body.photo,
+        comments: req.body.comments,
+        author: req.body.author
     }
     posts.push(post);
+    res.status(200).send();
 });
 
 apiRouter.get('/posts/posts', verifyAuth, (req, res) =>{
-    return posts;
+    res.send(posts);
 });
-
-
 
 const verifyAuth = async (req, res, next) => {
     const user = await findUser('token', req.cookies[authCookieName]);
