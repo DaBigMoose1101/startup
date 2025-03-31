@@ -50,7 +50,29 @@ apiRouter.delete('/auth/logout', async (req, res) => {
     res.status(204).end();
   });
 
-  const verifyAuth = async (req, res, next) => {
+ 
+
+  // all login required end points
+
+apiRouter.post('/post/create', verifyAuth, (req, res)=>{
+    const post = {
+        id: req.body.id,
+      likes: req.body.likes,
+      description: req.body.description,
+      photo: req.body.photo,
+      comments: req.body.comments,
+      author: req.body.author
+    }
+    posts.push(post);
+});
+
+apiRouter.get('/posts/posts', verifyAuth, (req, res) =>{
+    return posts;
+});
+
+
+
+const verifyAuth = async (req, res, next) => {
     const user = await findUser('token', req.cookies[authCookieName]);
     if (user) {
       next();
@@ -58,8 +80,6 @@ apiRouter.delete('/auth/logout', async (req, res) => {
       res.status(401).send({ msg: 'Unauthorized' });
     }
   };
-
-
 
 function setAuthCookie(res, authToken){
     res.cookie(authCookieName, authToken, {
