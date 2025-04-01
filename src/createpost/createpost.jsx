@@ -8,7 +8,8 @@ export function CreatePost({addPost, user}) {
     const navigate = useNavigate();
     const [description, setDescription] = React.useState();
     const [photo, setPhoto] = React.useState();
-  function createPost(){
+  
+    function createPost(){
     const newPost = {
       id: 1,
       likes: 0,

@@ -19,9 +19,10 @@ export default function App() {
   const [username, setUsername] = React.useState(localStorage.getItem('username') || '')
   const authState = username ? true : false;
   const [authorized, setAuthorized] = React.useState(authState);
+  
   async function addPost(newPost){
-    await fetch('/posts/create', {
-      method: posts,
+    await fetch('/api/post', {
+      method: 'POST',
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify(newPost)
     }); 
@@ -58,12 +59,12 @@ export default function App() {
   }
   
   React.useEffect(()=>{
-    fetch('/posts/posts')
+    fetch('/api/posts')
     .then((response) => response.json())
     .then((posts) =>{
       setPosts(posts);
     });
-},[addPost])
+},[])
   
   const [posts, setPosts] = React.useState([]); 
   return (

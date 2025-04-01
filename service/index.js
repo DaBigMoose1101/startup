@@ -50,6 +50,17 @@ apiRouter.delete('/auth/logout', async (req, res) => {
     res.status(204).end();
   });
 
+  // Default error handler
+app.use(function (err, req, res, next) {
+  console.log();
+  res.status(500).send({ type: err.name, message: err.message });
+});
+
+// Return the application's default page if the path is unknown
+app.use((_req, res) => {
+  res.sendFile("index.html", { root: "public" });
+});
+
   const verifyAuth = async (req, res, next) => {
     const user = await findUser('token', req.cookies[authCookieName]);
     if (user) {
@@ -61,7 +72,7 @@ apiRouter.delete('/auth/logout', async (req, res) => {
 
   // all login required end points
 
-apiRouter.post('/post/create', verifyAuth, (req, res)=>{
+apiRouter.post('/post', (req, res)=>{
     const post = {
         id: req.body.id,
         likes: req.body.likes,
@@ -74,7 +85,7 @@ apiRouter.post('/post/create', verifyAuth, (req, res)=>{
     res.status(200).send();
 });
 
-apiRouter.get('/posts/posts', verifyAuth, (req, res) =>{
+apiRouter.get('/posts', (req, res) =>{
     res.send(posts);
 });
 
@@ -100,6 +111,9 @@ async function createUser(email, password){
     return user;
 }
 
+function findUser(key, value){
+  return users.find(key, value);
+}
 
 function setAuthCookie(res, authToken) {
     res.cookie(authCookieName, authToken, {
