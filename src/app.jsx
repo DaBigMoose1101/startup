@@ -27,26 +27,43 @@ export default function App() {
     }); 
   }
 
-  function authorize( username){
-    setUsername(username);
-    setAuthorized(true);
+  async function loginOrCreate(endpoint) {
+    const response = await fetch(endpoint, {
+      method: 'post',
+      body: JSON.stringify({ email: userName, password: password }),
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+      },
+    });
+    if (response?.status === 200) {
+      localStorage.setItem('userName', userName);
+      setUsername(userName);
+    } else {
+      const body = await response.json();
+      setDisplayError(`⚠ Error: ${body.msg}`);
+    }
   }
 
-  function logout(){
-    localStorage.removeItem("username");
-    localStorage.removeItem("password");
-    setAuthorized(false);
+  function logout() {
+    fetch(`/api/auth/logout`, {
+      method: 'delete',
+    })
+      .catch(() => {
+        // Logout failed. Assuming offline
+      })
+      .finally(() => {
+        localStorage.removeItem('userName');
+        props.onLogout();
+      });
   }
-
   
-
   React.useEffect(()=>{
     fetch('/posts/posts')
     .then((response) => response.json())
     .then((posts) =>{
       setPosts(posts);
     });
-},[])
+},[addPost])
   
   const [posts, setPosts] = React.useState([]); 
   return (
@@ -68,7 +85,7 @@ export default function App() {
         </nav>
       </header>
       <Routes>
-      <Route path='/' element={<Login authorize={authorize} />}  exact />
+      <Route path='/' element={<Login authorize={loginOrCreate} />}  exact />
       <Route path='/home' element={<Home posts={posts}/>}/>
       <Route path='/recipes' element={<Recipes />} />
       <Route path='/meals' element={<Meals />} />
