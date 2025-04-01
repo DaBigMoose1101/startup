@@ -64,7 +64,7 @@ export default function App() {
     .then((posts) =>{
       setPosts(posts);
     });
-},[])
+},[addPost])
   
   const [posts, setPosts] = React.useState([]); 
   return (
