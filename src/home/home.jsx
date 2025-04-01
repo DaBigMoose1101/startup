@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button';
 import {Post} from '../postclass/post';
 
 export function Home({posts}) {
-    const navigate = useNavigate();
+    const navigate = useNavigate();    
   return (
     <main>
       <div className="page_Specific_Menu">

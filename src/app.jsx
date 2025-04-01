@@ -19,13 +19,19 @@ export default function App() {
   const [username, setUsername] = React.useState(localStorage.getItem('username') || '')
   const authState = username ? true : false;
   const [authorized, setAuthorized] = React.useState(authState);
+
+  const [posts, setPosts] = React.useState([]);
+  
   
   async function addPost(newPost){
-    await fetch('/api/post', {
+    const response = await fetch('/api/post', {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify(newPost)
     }); 
+    if(response.ok){
+      setPosts([newPost,...posts])
+    }
   }
 
   async function loginOrCreate(endpoint, userName, password) {
@@ -38,10 +44,12 @@ export default function App() {
     });
     if (response?.status === 200) {
       localStorage.setItem('userName', userName);
+      setAuthorized(true);
       setUsername(userName);
     } else {
       const body = await response.json();
       setDisplayError(`⚠ Error: ${body.msg}`);
+      setAuthorized(true);
     }
   }
 
@@ -54,9 +62,12 @@ export default function App() {
       })
       .finally(() => {
         localStorage.removeItem('userName');
+        setAuthorized(false);
         props.onLogout();
       });
   }
+
+  
 
   React.useEffect(()=>{
     fetch('/api/posts')
@@ -64,10 +75,7 @@ export default function App() {
     .then((posts) =>{
       setPosts(posts);
     });
-},[addPost])
-
-  
-  const [posts, setPosts] = React.useState([])
+},[])
 
   return (
     
