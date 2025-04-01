@@ -90,7 +90,7 @@ apiRouter.post('/post', verifyAuth, (req, res)=>{
     res.status(200).send();
 });
 
-apiRouter.get('/posts', verifyAuth, (req, res) =>{
+apiRouter.get('/posts', (req, res) =>{
     res.send(posts);
 });
 
