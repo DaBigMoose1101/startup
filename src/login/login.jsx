@@ -13,11 +13,15 @@ export function Login({authorize}) {
     const[quote, setQuote] = React.useState("");
     const[author, setAuthor] = React.useState("");
 
-    function handleClick(){
+    function handleLogin(){
         if(username !== "" && password !== ""){
-            localStorage.setItem("username", username);
-            localStorage.setItem("password", password);
-            authorize(username);
+            authorize('/api/auth/login', username, password);
+            navigate("/home");
+        }
+    }
+    function handleRegister(){
+        if(username !== "" && password !== ""){
+            authorize('/api/auth/create', username, password);
             navigate("/home");
         }
     }
@@ -41,7 +45,8 @@ export function Login({authorize}) {
                     <input type="password" id="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)}/>
                 </div>
                 <div>
-                    <button onClick={handleClick} className="btn btn-primary">Login</button>
+                    <button onClick={handleLogin} className="btn btn-primary">Login</button>
+                    <button onClick={handleRegister} className="btn btn-primary">Register</button>
                 </div>
                 <div>
                     <p>Inspirational quote: {quote}</p>

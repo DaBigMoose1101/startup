@@ -6,6 +6,7 @@ const uuid = require('uuid');
 
 let users = [];
 let posts = [];
+const authCookieName = 'token';
 
 app.use(cookieParser());
 app.use(express.static('public'));
@@ -28,26 +29,30 @@ apiRouter.post('/auth/create', async (req, res) =>{
 });
 
 apiRouter.put('/auth/login',  async (req, res) => {
-    const user = findUser(req.body.email);
+    const user = await findUser('email',req.body.email);
     if(user){
         if(await bcrypt.compare(req.body.password, user.password)){
             user.token = uuid.v4();
             setAuthCookie(res, user.token);
             res.send({email: user.email})
+            return;
         }
     }
-    else{
-        res.status(401).send('Unauthorized');
-    }
+    res.status(401).send('Unauthorized'); 
 });
 
 apiRouter.delete('/auth/logout', async (req, res) => {
-    const user = await findUser('token', req.cookies[authCookieName]);
+    const user = await findUser('token',req.cookies[authCookieName]);
     if (user) {
       delete user.token;
     }
     res.clearCookie(authCookieName);
     res.status(204).end();
+  });
+
+
+  apiRouter.get('/users', async (req, res) =>{
+    res.send(users);
   });
 
   // Default error handler
@@ -72,7 +77,7 @@ app.use((_req, res) => {
 
   // all login required end points
 
-apiRouter.post('/post', (req, res)=>{
+apiRouter.post('/post', verifyAuth, (req, res)=>{
     const post = {
         id: req.body.id,
         likes: req.body.likes,
@@ -85,22 +90,12 @@ apiRouter.post('/post', (req, res)=>{
     res.status(200).send();
 });
 
-apiRouter.get('/posts', (req, res) =>{
+apiRouter.get('/posts', verifyAuth, (req, res) =>{
     res.send(posts);
 });
 
-
-
-function setAuthCookie(res, authToken){
-    res.cookie(authCookieName, authToken, {
-        secure,
-        httpOnly,
-        sameSite
-    });
-}
-
 async function createUser(email, password){
-    const passwordHash = await bcrypt.hash(password);
+    const passwordHash = await bcrypt.hash(password, 10);
     const user = {
         email: email,
         password: passwordHash,
@@ -111,8 +106,10 @@ async function createUser(email, password){
     return user;
 }
 
-function findUser(key, value){
-  return users.find(key, value);
+async function findUser(field, value){
+  if (!value) return null;
+
+  return users.find((u) => u[field] === value);
 }
 
 function setAuthCookie(res, authToken) {

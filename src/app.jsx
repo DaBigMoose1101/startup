@@ -28,7 +28,7 @@ export default function App() {
     }); 
   }
 
-  async function loginOrCreate(endpoint) {
+  async function loginOrCreate(endpoint, userName, password) {
     const response = await fetch(endpoint, {
       method: 'post',
       body: JSON.stringify({ email: userName, password: password }),
@@ -57,7 +57,7 @@ export default function App() {
         props.onLogout();
       });
   }
-  
+
   React.useEffect(()=>{
     fetch('/api/posts')
     .then((response) => response.json())
@@ -65,8 +65,10 @@ export default function App() {
       setPosts(posts);
     });
 },[addPost])
+
   
-  const [posts, setPosts] = React.useState([]); 
+  const [posts, setPosts] = React.useState([])
+
   return (
     
     <BrowserRouter>
