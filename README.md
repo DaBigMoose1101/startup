@@ -150,11 +150,11 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Node.js/Express HTTP service** - I did not complete this part of the deliverable.
-- [ ] **Static middleware for frontend** - I did not complete this part of the deliverable.
-- [ ] **Calls to third party endpoints** - I did not complete this part of the deliverable.
-- [ ] **Backend service endpoints** - I did not complete this part of the deliverable.
-- [ ] **Frontend calls service endpoints** - I did not complete this part of the deliverable.
+- [x] **Node.js/Express HTTP service** - Tested with curl and online.
+- [x] **Static middleware for frontend** - Authetication for posting and loading new posts done in backend.
+- [x] **Calls to third party endpoints** - Loads photos from foodish-api.com.
+- [x] **Backend service endpoints** - Index.js in service has endpoints to register, login, logout, get posts, get users, add posts.
+- [x] **Frontend calls service endpoints** - Posts now are created then sent to the backend using fetch. Login, register, and logout called using fetch. Posts are dynamically loaded from backend using fetch.
 
 ## 🚀 DB/Login deliverable
 
