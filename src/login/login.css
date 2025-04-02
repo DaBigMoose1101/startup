@@ -50,3 +50,18 @@ main{
 .login form div{
     margin: 10px;
 }
+
+.photo {
+    display: flex;
+    justify-content: center; /* Centers image horizontally */
+    align-items: center; /* Centers image vertically */
+    width: 100%; 
+    margin-top: 20px;
+}
+
+.photo img {
+    width: 300px; /* Fixed width */
+    height: 300px; /* Fixed height */
+    object-fit: cover; /* Ensures it fills the box without stretching */
+    border-radius: 10px; /* Optional: rounded corners */
+}

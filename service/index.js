@@ -15,7 +15,7 @@ app.use(express.json());
 var apiRouter = express.Router();
 app.use(`/api`, apiRouter);
 
-const port = process.argv.length > 2 ? process.argv[2] : 3000;
+const port = process.argv.length > 2 ? process.argv[2] : 4000;
 
 apiRouter.post('/auth/create', async (req, res) =>{
     if(await findUser('email', req.body.email)){

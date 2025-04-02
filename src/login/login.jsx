@@ -9,9 +9,7 @@ export function Login({authorize}) {
     const navigate = useNavigate(); 
     const [username, setUsername] = React.useState("");
     const [password, setPassword] = React.useState("");
-
-    const[quote, setQuote] = React.useState("");
-    const[author, setAuthor] = React.useState("");
+    const [image, setImage] = React.useState(null);
 
     function handleLogin(){
         if(username !== "" && password !== ""){
@@ -27,9 +25,11 @@ export function Login({authorize}) {
     }
 
     React.useEffect(()=>{
-        setQuote("A recipe has no soul; you, as the cook, must bring soul to the recipe.");
-        setAuthor("Thomas Keller");
-    },[])
+        fetch('https://foodish-api.com/api/')
+        .then((response) => response.json())
+        .then((data) => {
+            setImage(data.image)
+    })},[])
 
   return (
     <main>
@@ -44,13 +44,12 @@ export function Login({authorize}) {
                     <label htmlFor="password">Password</label>
                     <input type="password" id="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)}/>
                 </div>
-                <div>
+                <div >
                     <button onClick={handleLogin} className="btn btn-primary">Login</button>
                     <button onClick={handleRegister} className="btn btn-primary">Register</button>
                 </div>
-                <div>
-                    <p>Inspirational quote: {quote}</p>
-                    <p>-{author}</p>
+                <div className="photo">
+                    <img src={image}></img>
                 </div>
         </div>
     </main>
