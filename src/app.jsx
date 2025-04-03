@@ -16,8 +16,8 @@ import { Search } from './search/search';
 import { Nav } from 'react-bootstrap';
 
 export default function App() {
-  const [username, setUsername] = React.useState(localStorage.getItem('username') || '')
-  const authState = username ? true : false;
+  const [userName, setUsername] = React.useState(localStorage.getItem('userName') || '')
+  const authState = userName ? true : false;
   const [authorized, setAuthorized] = React.useState(authState);
 
   const [posts, setPosts] = React.useState([]);
@@ -34,24 +34,7 @@ export default function App() {
     }
   }
 
-  async function loginOrCreate(endpoint, userName, password) {
-    const response = await fetch(endpoint, {
-      method: 'post',
-      body: JSON.stringify({ email: userName, password: password }),
-      headers: {
-        'Content-type': 'application/json; charset=UTF-8',
-      },
-    });
-    if (response?.status === 200) {
-      localStorage.setItem('userName', userName);
-      setAuthorized(true);
-      setUsername(userName);
-    } else {
-      const body = await response.json();
-      setDisplayError(`⚠ Error: ${body.msg}`);
-      setAuthorized(true);
-    }
-  }
+  
 
   function logout() {
     fetch(`/api/auth/logout`, {
@@ -63,7 +46,6 @@ export default function App() {
       .finally(() => {
         localStorage.removeItem('userName');
         setAuthorized(false);
-        props.onLogout();
       });
   }
 
@@ -96,7 +78,7 @@ export default function App() {
         </nav>
       </header>
       <Routes>
-      <Route path='/' element={<Login authorize={loginOrCreate} />}  exact />
+      <Route path='/' element={<Login authorize={(response)=>setAuthorized(response)}/>}  exact />
       <Route path='/home' element={<Home posts={posts}/>}/>
       <Route path='/recipes' element={<Recipes />} />
       <Route path='/meals' element={<Meals />} />
@@ -104,7 +86,7 @@ export default function App() {
       <Route path='/profile' element={<Profile />} />
       <Route path='/createmeal' element={<CreateMeal />} />
       <Route path='/createpage' element={<CreatePage />} />
-      <Route path='/createpost' element={<CreatePost addPost={addPost} user={username} />} />
+      <Route path='/createpost' element={<CreatePost addPost={addPost} user={userName} />} />
       <Route path='/createrecipe' element={<CreateRecipe />} />
       <Route path='/search' element={<Search />} />
       <Route path='*' element={<NotFound />} />

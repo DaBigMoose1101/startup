@@ -38,7 +38,7 @@ apiRouter.put('/auth/login',  async (req, res) => {
             return;
         }
     }
-    res.status(401).send('Unauthorized'); 
+    res.status(401).send({'msg':'Unauthorized'}); 
 });
 
 apiRouter.delete('/auth/logout', async (req, res) => {
@@ -49,7 +49,6 @@ apiRouter.delete('/auth/logout', async (req, res) => {
     res.clearCookie(authCookieName);
     res.status(204).end();
   });
-
 
   apiRouter.get('/users', async (req, res) =>{
     res.send(users);
@@ -88,6 +87,18 @@ apiRouter.post('/post', verifyAuth, (req, res)=>{
     }
     posts.push(post);
     res.status(200).send();
+});
+
+apiRouter.post('/recipe', verifyAuth, (req, res) =>{
+
+});
+
+apiRouter.post('/group', verifyAuth, (req, res) =>{
+
+});
+
+apiRouter.post('/meal', verifyAuth, (req, res) =>{
+
 });
 
 apiRouter.get('/posts', (req, res) =>{

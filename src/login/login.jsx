@@ -9,32 +9,38 @@ export function Login({authorize}) {
     const navigate = useNavigate(); 
     const [username, setUsername] = React.useState("");
     const [password, setPassword] = React.useState("");
+    const [message, setMessage] = React.useState("")
     const [image, setImage] = React.useState(null);
 
-    function handleLogin(){
-        if(username !== "" && password !== ""){
-            authorize('/api/auth/login', username, password);
-            navigate("/home");
-        }
+async function loginOrCreate(endpoint, method, userName, password) {
+    const response = await fetch(endpoint, {
+           method: method,
+        body: JSON.stringify({ email: userName, password: password }),
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+      },
+    });
+    if (response?.status === 200) {
+        localStorage.setItem('userName', userName);
+        authorize(true)
+        navigate('/home');
+    } else {
+        setMessage(response.statusText);
     }
-    function handleRegister(){
-        if(username !== "" && password !== ""){
-            authorize('/api/auth/create', username, password);
-            navigate("/home");
-        }
-    }
+  }
 
     React.useEffect(()=>{
         fetch('https://foodish-api.com/api/')
         .then((response) => response.json())
         .then((data) => {
-            setImage(data.image)
+            setImage(data.image);
     })},[])
 
   return (
     <main>
         <div className="login">
             <h2>Login</h2>
+            <p>{message}</p>
             
                 <div>
                     <label htmlFor="username">Username</label>
@@ -45,8 +51,8 @@ export function Login({authorize}) {
                     <input type="password" id="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)}/>
                 </div>
                 <div >
-                    <button onClick={handleLogin} className="btn btn-primary">Login</button>
-                    <button onClick={handleRegister} className="btn btn-primary">Register</button>
+                    <button onClick={() =>{loginOrCreate('/api/auth/login', "PUT", username, password)}} className="btn btn-primary">Login</button>
+                    <button onClick={() => {loginOrCreate('/api/auth/create', "POST", username, password)}} className="btn btn-primary">Register</button>
                 </div>
                 <div className="photo">
                     <img src={image}></img>
