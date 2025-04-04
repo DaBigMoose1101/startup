@@ -2,9 +2,10 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-router-dom';
 import {useNavigate } from 'react-router-dom';
+import {Meal} from '../mealclass/meal';
 import Button from 'react-bootstrap/Button';
 
-export function Meals() {
+export function Meals({meals}) {
     const navigate = useNavigate();
   return (
     <main>
@@ -41,51 +42,15 @@ export function Meals() {
   
               </td>
               <td id="feed">
+                <div>{meals.map((meal, index)=>(<Meal meal={meal} key={index}></Meal>))}</div>              
+              </td>
+              <td id="side">
   
-                    <div className="post">
-                        <img alt="post1" src="./PostPlaceHolder1.jpg"/>
-                        <div className="postReact">
-                          <button type="react" className="btn btn-primary btn-sm">Love It</button>
-                          <button type="react" className="btn btn-primary btn-sm">Comment</button>
-                        </div>
-                        <p className="username">Creator's username here</p>
-                        <p>Description of post here</p>
-                        <p>put address here to link to where to pick up meal</p>
-                        
-                    </div>
-                
-  
-                    <div className="post">
-                        <img alt="post2" src="./PostPlaceHolder2.jpg"/>
-                        <div className="postReact">
-                          <button type="react" className="btn btn-primary btn-sm">Love It</button>
-                          <button type="react" className="btn btn-primary btn-sm">Comment</button>
-                        </div>
-                        <p className="username">Creator's username here</p>
-                        <p>Description of post here</p>
-                        <p>put address here to link to where to pick up meal</p>
-                    </div>
-                
-                    <div className="post">
-                        <img alt="post3" src="./PostPlaceHolder3.jpg"/>
-                        <div className="postReact">
-                          <button type="react" className="btn btn-primary btn-sm">Love It</button>
-                          <button type="react" className="btn btn-primary btn-sm">Comment</button>
-                        </div>
-                        <p className="username">Creator's username here</p>
-                        <p>Description of post here</p>
-                        <p>put address here to link to where to pick up meal</p>
-                    </div>
-                
-                </td>
-                <td id="side">
-  
-                      <div>Meal A</div>
-                      <div>Meal B</div>
-                      <div>Meal C</div>
-                      <div>Meal D</div>
-  
-                    </td>
+                <div>Meal A</div>
+                <div>Meal B</div>
+                <div>Meal C</div>
+                <div>Meal D</div>
+              </td>
             </tr>
             </tbody>
           </table>

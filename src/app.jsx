@@ -66,7 +66,7 @@ export default function App() {
       body: JSON.stringify(newMeal)
     }); 
     if(response.ok){
-      setMeals([newMeal,...Meals])
+      setMeals([newMeal,...meals])
     }
   }
 

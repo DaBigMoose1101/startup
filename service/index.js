@@ -131,7 +131,12 @@ const verifyAuth = async (req, res, next) => {
 
   apiRouter.post('/meal', verifyAuth, (req, res) =>{
     const meal = {
-
+      author: req.body.user,
+        name: req.body.name,
+        photo: req.body.photo,
+        location: req.body.location,
+        description: req.body.description,
+        ingredients: req.body.ingredients
     }
     meals.push(meal);
     res.status(200).send();

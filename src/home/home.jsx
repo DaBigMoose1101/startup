@@ -42,7 +42,7 @@ export function Home({posts}) {
 
             </td>
             <td id="feed">
-                    <div>{posts.map((post, index)=>(<Post post={post} key={index}></Post>))}</div>                
+                    <div>{posts.map((post, index)=>(<Post post={post} key={index}></Post>))}</div>            
                      
               </td>
               <td id="side">
