@@ -6,6 +6,10 @@ const uuid = require('uuid');
 
 let users = [];
 let posts = [];
+let recipes = [];
+let pages = [];
+let meals = [];
+
 const authCookieName = 'token';
 
 app.use(cookieParser());
@@ -62,10 +66,10 @@ app.use(function (err, req, res, next) {
 
 // Return the application's default page if the path is unknown
 app.use((_req, res) => {
-  res.sendFile("index.html", { root: "public" });
+    res.sendFile("index.html", { root: "public" });
 });
 
-  const verifyAuth = async (req, res, next) => {
+const verifyAuth = async (req, res, next) => {
     const user = await findUser('token', req.cookies[authCookieName]);
     if (user) {
       next();
@@ -90,15 +94,44 @@ apiRouter.post('/post', verifyAuth, (req, res)=>{
 });
 
 apiRouter.post('/recipe', verifyAuth, (req, res) =>{
+  const recipe = {
+    author: req.body.author,
+    photo: req.body.photo,
+    name: req.body.name,
+    ingredients: req.body.ingredients,
+    instructions: req.body.instuctions
+  }
+  recipes.push(recipe);
+  res.status(200).send();
 
 });
 
-apiRouter.post('/group', verifyAuth, (req, res) =>{
+apiRouter.get('/recipes', verifyAuth, (req, res)=>{
+  res.send(recipes);
+});
 
+apiRouter.post('/page', verifyAuth, (req, res) =>{
+  const page = {
+
+  }
+  pages.push(page);
+  res.status(200).send();
+});
+
+apiRouter.get('/pages', verifyAuth, (req, res) =>{
+  res.send(pages);
 });
 
 apiRouter.post('/meal', verifyAuth, (req, res) =>{
+  const meal = {
 
+  }
+  meals.push(meal);
+  res.status(200).send();
+});
+
+apiRouter.get('/meals', verifyAuth, (req, res) =>{
+  res.send(meals);
 });
 
 apiRouter.get('/posts', (req, res) =>{

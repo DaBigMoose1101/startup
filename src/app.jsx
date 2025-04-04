@@ -21,6 +21,9 @@ export default function App() {
   const [authorized, setAuthorized] = React.useState(authState);
 
   const [posts, setPosts] = React.useState([]);
+  const [meals, setMeals] = React.useState([]);
+  const [pages, setPages] = React.useState([]);
+  const [recipes, setRecipes] = React.useState([]);
   
   
   async function addPost(newPost){
@@ -31,6 +34,39 @@ export default function App() {
     }); 
     if(response.ok){
       setPosts([newPost,...posts])
+    }
+  }
+
+  async function addRecipe(newRecipe){
+    const response = await fetch('/api/recipe', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify(newRecipe)
+    }); 
+    if(response.ok){
+      setRecipes([newRecipe,...recipes])
+    }
+  }
+
+  async function addPage(newPage){
+    const response = await fetch('/api/page', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify(newPage)
+    }); 
+    if(response.ok){
+      setPages([newPage,...pages])
+    }
+  }
+
+  async function addMeal(newMeal){
+    const response = await fetch('/api/meal', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify(newMeal)
+    }); 
+    if(response.ok){
+      setMeals([newMeal,...Meals])
     }
   }
 
@@ -57,6 +93,21 @@ export default function App() {
     .then((posts) =>{
       setPosts(posts);
     });
+    fetch('/api/recipes')
+    .then((response) => response.json())
+    .then((recipes) =>{
+      setRecipes(recipes);
+    });
+    fetch('/api/pages')
+    .then((response) => response.json())
+    .then((pages) =>{
+      setPages(pages);
+    });
+    fetch('/api/meals')
+    .then((response) => response.json())
+    .then((meals) =>{
+      setMeals(meals);
+    });
 },[])
 
   return (
@@ -80,14 +131,14 @@ export default function App() {
       <Routes>
       <Route path='/' element={<Login authorize={(response)=>setAuthorized(response)}/>}  exact />
       <Route path='/home' element={<Home posts={posts}/>}/>
-      <Route path='/recipes' element={<Recipes />} />
+      <Route path='/recipes' element={<Recipes recipes={recipes} />} />
       <Route path='/meals' element={<Meals />} />
       <Route path='/pages' element={<Pages />} />
       <Route path='/profile' element={<Profile />} />
-      <Route path='/createmeal' element={<CreateMeal />} />
-      <Route path='/createpage' element={<CreatePage />} />
+      <Route path='/createmeal' element={<CreateMeal addMeal={addMeal} user={userName} />} />
+      <Route path='/createpage' element={<CreatePage addPage={addPage} user={userName} />} />
       <Route path='/createpost' element={<CreatePost addPost={addPost} user={userName} />} />
-      <Route path='/createrecipe' element={<CreateRecipe />} />
+      <Route path='/createrecipe' element={<CreateRecipe addRecipe={addRecipe} user={userName} />} />
       <Route path='/search' element={<Search />} />
       <Route path='*' element={<NotFound />} />
     </Routes>

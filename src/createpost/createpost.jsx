@@ -52,10 +52,6 @@ export function CreatePost({addPost, user}) {
                         <input id="photo" type="file" accept="img/*" onChange={(e) => setPhoto(e.target.value)} />
                       </div>
                       <div>
-                        <label htmlFor="name">Post Title: </label>
-                        <input id="name" type="text" placeholder="Enter Post Title" />
-                      </div>
-                      <div>
                         <label htmlFor="description">Post Description: </label>
                         <textarea id="description" name="postdescription" rows="6" cols="50" placeholder="What's on your mind?" onChange={(e) => setDescription(e.target.value)}></textarea>
                       </div>

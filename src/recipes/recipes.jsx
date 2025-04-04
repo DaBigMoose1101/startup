@@ -1,10 +1,11 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-router-dom';
+import {Recipe} from '../recipeclass/recipe'
 import {useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 
-export function Recipes() {
+export function Recipes({recipes}) {
     const navigate = useNavigate();
   return (
     <main>
@@ -41,37 +42,7 @@ export function Recipes() {
 
         </td>
         <td id="feed">
-              <div className="post">
-                  <img alt="post1" src="./PostPlaceHolder1.jpg"/>
-                  <div className="postReact">
-                    <button type="react" className="btn btn-primary btn-sm">Love It</button>
-                    <button type="react" className="btn btn-primary btn-sm">Comment</button>
-                  </div>
-                  <p>Creator's username here</p>
-                  <p>Description of post here</p>
-                  
-              </div>
-          
-
-              <div className="post">
-                  <img alt="post2" src="./PostPlaceHolder2.jpg"/>
-                  <div className="postReact">
-                    <button type="react" className="btn btn-primary btn-sm">Love It</button>
-                    <button type="react" className="btn btn-primary btn-sm">Comment</button>
-                  </div>
-                  <p>Creator's username here</p>
-                  <p>Description of post here</p>
-              </div>
-          
-              <div className="post">
-                  <img alt="post3" src="./PostPlaceHolder3.jpg"/>
-                  <div className="postReact">
-                    <button type="react" className="btn btn-primary btn-sm">Love It</button>
-                    <button type="react" className="btn btn-primary btn-sm">Comment</button>
-                  </div>
-                  <p>Creator's username here</p>
-                  <p>Description of post here</p>
-              </div>
+              <div>{recipes.map((recipe, index)=>(<Recipe recipe={recipe} key={index}></Recipe>))}</div> 
           
           </td>
           <td id="side">
