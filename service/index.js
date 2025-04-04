@@ -80,7 +80,12 @@ const verifyAuth = async (req, res, next) => {
 
   // all login required end points
 
-apiRouter.post('/post', verifyAuth, (req, res)=>{
+  apiRouter.get('/user/posts', async (req, res) => {
+    const result = await getProfilePosts(req);
+    res.send(result);   
+  });
+
+  apiRouter.post('/post', verifyAuth, (req, res)=>{
     const post = {
         id: req.body.id,
         likes: req.body.likes,
@@ -93,52 +98,54 @@ apiRouter.post('/post', verifyAuth, (req, res)=>{
     res.status(200).send();
 });
 
-apiRouter.post('/recipe', verifyAuth, (req, res) =>{
-  const recipe = {
-    author: req.body.author,
-    photo: req.body.photo,
-    name: req.body.name,
-    ingredients: req.body.ingredients,
-    instructions: req.body.instuctions
-  }
-  recipes.push(recipe);
-  res.status(200).send();
+  apiRouter.post('/recipe', verifyAuth, (req, res) =>{
+    const recipe = {
+     author: req.body.author,
+      photo: req.body.photo,
+      name: req.body.name,
+      ingredients: req.body.ingredients,
+      instructions: req.body.instuctions
+    }
+    recipes.push(recipe);
+    res.status(200).send();
 
-});
+  });
 
-apiRouter.get('/recipes', verifyAuth, (req, res)=>{
-  res.send(recipes);
-});
+  apiRouter.get('/recipes', (req, res)=>{
+    res.send(recipes);
+  });
 
-apiRouter.post('/page', verifyAuth, (req, res) =>{
-  const page = {
+  apiRouter.post('/page', verifyAuth, (req, res) =>{
+    const page = {
+      name: req.body.name,
+      photo: req.body.photo,
+      description: req.body.description
+    }
+    pages.push(page);
+    res.status(200).send();
+  });
 
-  }
-  pages.push(page);
-  res.status(200).send();
-});
+  apiRouter.get('/pages', (req, res) =>{
+    res.send(pages);
+  });
 
-apiRouter.get('/pages', verifyAuth, (req, res) =>{
-  res.send(pages);
-});
+  apiRouter.post('/meal', verifyAuth, (req, res) =>{
+    const meal = {
 
-apiRouter.post('/meal', verifyAuth, (req, res) =>{
-  const meal = {
+    }
+    meals.push(meal);
+    res.status(200).send();
+  });
 
-  }
-  meals.push(meal);
-  res.status(200).send();
-});
+  apiRouter.get('/meals', (req, res) =>{
+    res.send(meals);
+  });
 
-apiRouter.get('/meals', verifyAuth, (req, res) =>{
-  res.send(meals);
-});
-
-apiRouter.get('/posts', (req, res) =>{
+  apiRouter.get('/posts', (req, res) =>{
     res.send(posts);
-});
+  });
 
-async function createUser(email, password){
+  async function createUser(email, password){
     const passwordHash = await bcrypt.hash(password, 10);
     const user = {
         email: email,
@@ -148,15 +155,21 @@ async function createUser(email, password){
 
     users.push(user);
     return user;
-}
+  }
 
-async function findUser(field, value){
-  if (!value) return null;
+  async function findUser(field, value){
+    if (!value) return null;
 
-  return users.find((u) => u[field] === value);
-}
+    return users.find((u) => u[field] === value);
+  }
 
-function setAuthCookie(res, authToken) {
+  async function getProfilePosts(req){
+    const user = await findUser('token', req.cookies[authCookieName])
+    const result = posts.filter(post => post.author === user.email);
+    return result;  
+  } 
+
+  function setAuthCookie(res, authToken) {
     res.cookie(authCookieName, authToken, {
       secure: true,
       httpOnly: true,
@@ -164,6 +177,6 @@ function setAuthCookie(res, authToken) {
     });
   }
 
-app.listen(port, () => {
-  console.log(`Listening on port ${port}`);
-});
+  app.listen(port, () => {
+    console.log(`Listening on port ${port}`);
+  });

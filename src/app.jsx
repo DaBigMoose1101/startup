@@ -129,12 +129,14 @@ export default function App() {
         </nav>
       </header>
       <Routes>
-      <Route path='/' element={<Login authorize={(response)=>setAuthorized(response)}/>}  exact />
+      <Route path='/' element={<Login authorize={(response, username)=>{setAuthorized(response);
+        setUsername(username);
+      } }/>}  exact />
       <Route path='/home' element={<Home posts={posts}/>}/>
       <Route path='/recipes' element={<Recipes recipes={recipes} />} />
-      <Route path='/meals' element={<Meals />} />
-      <Route path='/pages' element={<Pages />} />
-      <Route path='/profile' element={<Profile />} />
+      <Route path='/meals' element={<Meals meals={meals}/>} />
+      <Route path='/pages' element={<Pages pages={pages}/>} />
+      <Route path='/profile' element={<Profile user={userName}/>} />
       <Route path='/createmeal' element={<CreateMeal addMeal={addMeal} user={userName} />} />
       <Route path='/createpage' element={<CreatePage addPage={addPage} user={userName} />} />
       <Route path='/createpost' element={<CreatePost addPost={addPost} user={userName} />} />

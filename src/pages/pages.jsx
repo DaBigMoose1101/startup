@@ -2,9 +2,10 @@ import React from 'react';
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-router-dom';
+import {Page} from '../pageclass/page';
 import {useNavigate } from 'react-router-dom';
 
-export function Pages() {
+export function Pages({pages}) {
     const navigate = useNavigate();
   return (
     <main>
@@ -42,47 +43,15 @@ export function Pages() {
               </td>
               <td  id="feed">
   
-                    <div className="post">
-                        <img alt="post1" src="./PostPlaceHolder1.jpg"/>
-                        <div className="postReact">
-                          <button type="react" className="btn btn-primary btn-sm">Love It</button>
-                          <button type="react" className="btn btn-primary btn-sm">Comment</button>
-                        </div>
-                        <p className="username">Creator's username here</p>
-                        <p>Description of post here</p>
-                        
-                    </div>
+                <div>{pages.map((page, index)=>(<Page page={page} key={index}></Page>))}</div>
                 
-  
-                    <div className="post">
-                        <img alt="post2" src="./PostPlaceHolder2.jpg"/>
-                        <div className="postReact">
-                          <button type="react" className="btn btn-primary btn-sm">Love It</button>
-                          <button type="react" className="btn btn-primary btn-sm">Comment</button>
-                        </div>
-                        <p className="username">Creator's username here</p>
-                        <p>Description of post here</p>
-                    </div>
-                
-                    <div className="post">
-                        <img alt="post3" src="./PostPlaceHolder3.jpg"/>
-                        <div className="postReact">
-                          <button type="react" className="btn btn-primary btn-sm">Love It</button>
-                          <button type="react" className="btn btn-primary btn-sm">Comment</button>
-                        </div>
-                        <p className="username">Creator's username here</p>
-                        <p>Description of post here</p>
-                    </div>
-                
-                </td>
-                <td id="side">
-  
-                      <div>Meal A</div>
-                      <div>Meal B</div>
-                      <div>Meal C</div>
-                      <div>Meal D</div>
-  
-                    </td>
+              </td>
+              <td id="side">
+                    <div>Meal A</div>
+                    <div>Meal B</div>
+                    <div>Meal C</div>
+                    <div>Meal D</div>
+                  </td>
             </tr>
             </tbody>
           </table>
