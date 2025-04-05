@@ -119,7 +119,8 @@ const verifyAuth = async (req, res, next) => {
   });
 
   apiRouter.get('/recipes', (req, res)=>{
-    res.send(getRecipes());
+    const recipes = getRecipes();
+    res.send(recipes);
   });
 
   apiRouter.post('/page', verifyAuth, (req, res) =>{
@@ -133,7 +134,8 @@ const verifyAuth = async (req, res, next) => {
   });
 
   apiRouter.get('/pages', (req, res) =>{
-    res.send(getPages());
+    const pages = getPages();
+    res.send(pages);
   });
 
   apiRouter.post('/meal', verifyAuth, (req, res) =>{
@@ -247,50 +249,3 @@ async function getPages() {
     console.log(`Listening on port ${port}`);
   });
 
-  async function main() {
-    try {
-      // Test that you can connect to the database
-      await db.command({ ping: 1 });
-      console.log(`DB connected to ${config.hostname}`);
-    } catch (ex) {
-      console.log(`Connection failed to ${url} because ${ex.message}`);
-      process.exit(1);
-    }
-
-    const post = {
-      id: 1,
-      likes: 0,
-      description: "first post",
-      photo: null,
-      comments: [],
-      author: "devs"
-  }
-    addPost(post);
-    const recipe = {
-      author: "devs",
-       photo: null,
-       name: "test",
-       ingredients: "test",
-       instructions: "test"
-     }
-     addRecipe(recipe);
-     const meal = {
-      author: "devs",
-        name: "test",
-        photo: null,
-        location: "test",
-        description: "test",
-        ingredients: "test"
-    }
-    addMeal(meal);
-
-    const page = {
-      name: "test",
-      photo: null,
-      description: "test"
-    }
-    addPage(page);
-    
-  }
-
-  main();
