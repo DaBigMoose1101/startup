@@ -42,8 +42,9 @@ apiRouter.put('/auth/login',  async (req, res) => {
     const user = await getUser(req.body.email);
     if(user){
         if(await bcrypt.compare(req.body.password, user.password)){
-            user.token = uuid.v4();
-            setAuthCookie(res, user.token);
+            const token = uuid.v4();
+            setAuthCookie(res, token);
+            userCollection.updateOne({user: user.email},{$set:{authToken: token}});
             res.send({email: user.email})
             return;
         }
