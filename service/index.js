@@ -170,7 +170,7 @@ const verifyAuth = async (req, res, next) => {
 
   async function getProfilePosts(req){
     const user = await getUserByToken(req.cookies[authCookieName]);
-    const result = posts.filter(post => post.author === user.email);
+    const result = postCollection.find({author: user});
     return result;  
   } 
 
