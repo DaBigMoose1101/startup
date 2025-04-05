@@ -61,7 +61,7 @@ apiRouter.delete('/auth/logout', async (req, res) => {
   });
 
   apiRouter.get('/users', async (req, res) =>{
-    res.send(users);
+    res.send(getAllUsers());
   });
 
   // Default error handler
@@ -184,6 +184,10 @@ const verifyAuth = async (req, res, next) => {
 
   async function getUser(email) {
     return userCollection.findOne({ email: email });
+  }
+
+  async function getAllUsers(){
+    return userCollection.find();
   }
   
   async function getUserByToken(token) {
