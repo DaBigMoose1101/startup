@@ -6,7 +6,7 @@ const uuid = require('uuid');
 const { MongoClient } = require('mongodb');
 const config = require('./dbConfig.json');
 
-const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostname}`;
+const url = `mongodb+srv://${config.username}:${config.password}@${config.hostname}`;
 
 const client = new MongoClient(url);
 const db = client.db('mealshare');
@@ -188,7 +188,9 @@ const verifyAuth = async (req, res, next) => {
   }
 
   async function getAllUsers(){
-    return userCollection.find();
+    const cursor = userCollection.find();
+    const users = await cursor.toArray();
+    return users;
   }
   
   async function getUserByToken(token) {
@@ -215,23 +217,43 @@ const verifyAuth = async (req, res, next) => {
     await mealsCollection.insertOne(meal);
   }
 
-  async function getPosts(){
-    return postCollection.find()
-  }
+  async function getPosts() {
+    const cursor = postCollection.find();
+    const posts = await cursor.toArray();
+    return posts;
+}
 
-  async function getRecipes(){
-    return recipeCollection.find()
-  }
+async function getRecipes() {
+  const cursor = recipeCollection.find();
+  const recipes = await cursor.toArray();
+  return recipes;
+}
 
-  async function getMeals(){
-    return mealsCollection.find()
-  }
+async function getMeals() {
+  const cursor = mealsCollection.find();
+  const meals = await cursor.toArray();
+  return meals;
+}
 
-  async function getPages(){
-    return pagesCollection.find()
-  }
-  
+async function getPages() {
+  const cursor = pagesCollection.find();
+  const pages = await cursor.toArray();
+  return pages;
+}
 
   app.listen(port, () => {
     console.log(`Listening on port ${port}`);
   });
+
+  async function main() {
+    try {
+      // Test that you can connect to the database
+      await db.command({ ping: 1 });
+      console.log(`DB connected to ${config.hostname}`);
+    } catch (ex) {
+      console.log(`Connection failed to ${url} because ${ex.message}`);
+      process.exit(1);
+    }
+  }
+
+  main();
