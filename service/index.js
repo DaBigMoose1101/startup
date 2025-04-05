@@ -118,7 +118,7 @@ const verifyAuth = async (req, res, next) => {
   });
 
   apiRouter.get('/recipes', (req, res)=>{
-    res.send(recipes);
+    res.send(getRecipes());
   });
 
   apiRouter.post('/page', verifyAuth, (req, res) =>{
