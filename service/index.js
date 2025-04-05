@@ -100,7 +100,7 @@ const verifyAuth = async (req, res, next) => {
         comments: req.body.comments,
         author: req.body.author
     }
-    posts.push(post);
+    addPost(post);
     res.status(200).send();
 });
 
@@ -112,7 +112,7 @@ const verifyAuth = async (req, res, next) => {
       ingredients: req.body.ingredients,
       instructions: req.body.instuctions
     }
-    recipes.push(recipe);
+    addRecipe(recipe);
     res.status(200).send();
 
   });
