@@ -3,12 +3,18 @@ const app = express();
 const cookieParser = require('cookie-parser');
 const bcrypt = require('bcryptjs');
 const uuid = require('uuid');
+const { MongoClient } = require('mongodb');
+const config = require('./dbConfig.json');
 
-let users = [];
-let posts = [];
-let recipes = [];
-let pages = [];
-let meals = [];
+const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostname}`;
+
+const client = new MongoClient(url);
+const db = client.db('mealshare');
+const userCollection = db.collection('users');
+const postCollection = db.collection('posts');
+const recipeCollection = db.collection('recipes');
+const pagesCollection = db.collection('pages');
+const mealsCollection = db.collection('meals');
 
 const authCookieName = 'token';
 
@@ -22,7 +28,7 @@ app.use(`/api`, apiRouter);
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
 
 apiRouter.post('/auth/create', async (req, res) =>{
-    if(await findUser('email', req.body.email)){
+    if(await getUser(req.body.email)){
         res.status(409).send({ msg: 'Existing user' });
     }
     else{
@@ -33,7 +39,7 @@ apiRouter.post('/auth/create', async (req, res) =>{
 });
 
 apiRouter.put('/auth/login',  async (req, res) => {
-    const user = await findUser('email',req.body.email);
+    const user = await getUser(req.body.email);
     if(user){
         if(await bcrypt.compare(req.body.password, user.password)){
             user.token = uuid.v4();
@@ -46,7 +52,7 @@ apiRouter.put('/auth/login',  async (req, res) => {
 });
 
 apiRouter.delete('/auth/logout', async (req, res) => {
-    const user = await findUser('token',req.cookies[authCookieName]);
+    const user = await getUserByToken(req.cookies[authCookieName]);
     if (user) {
       delete user.token;
     }
@@ -70,7 +76,7 @@ app.use((_req, res) => {
 });
 
 const verifyAuth = async (req, res, next) => {
-    const user = await findUser('token', req.cookies[authCookieName]);
+    const user = await getUserByToken(req.cookies[authCookieName]);
     if (user) {
       next();
     } else {
@@ -126,7 +132,7 @@ const verifyAuth = async (req, res, next) => {
   });
 
   apiRouter.get('/pages', (req, res) =>{
-    res.send(pages);
+    res.send(getPages());
   });
 
   apiRouter.post('/meal', verifyAuth, (req, res) =>{
@@ -143,11 +149,11 @@ const verifyAuth = async (req, res, next) => {
   });
 
   apiRouter.get('/meals', (req, res) =>{
-    res.send(meals);
+    res.send(getMeals());
   });
 
   apiRouter.get('/posts', (req, res) =>{
-    res.send(posts);
+    res.send(getPosts());
   });
 
   async function createUser(email, password){
@@ -158,18 +164,12 @@ const verifyAuth = async (req, res, next) => {
         token: uuid.v4()
     };
 
-    users.push(user);
+    addUser(user);
     return user;
   }
 
-  async function findUser(field, value){
-    if (!value) return null;
-
-    return users.find((u) => u[field] === value);
-  }
-
   async function getProfilePosts(req){
-    const user = await findUser('token', req.cookies[authCookieName])
+    const user = await getUserByToken(req.cookies[authCookieName]);
     const result = posts.filter(post => post.author === user.email);
     return result;  
   } 
@@ -181,6 +181,51 @@ const verifyAuth = async (req, res, next) => {
       sameSite: 'strict',
     });
   }
+
+  async function getUser(email) {
+    return userCollection.findOne({ email: email });
+  }
+  
+  async function getUserByToken(token) {
+    return userCollection.findOne({ token: token });
+  }
+  
+  async function addUser(user) {
+    await userCollection.insertOne(user);
+  }
+
+  async function addPost(post) {
+    await postCollection.insertOne(post);
+  }
+
+  async function addRecipe(recipe) {
+    await recipeCollection.insertOne(recipe);
+  }
+
+  async function addPage(page) {
+    await pageCollection.insertOne(page);
+  }
+
+  async function addMeal(meal) {
+    await mealCollection.insertOne(meal);
+  }
+
+  async function getPosts(){
+    return postCollection.find()
+  }
+
+  async function getRecipes(){
+    return recipeCollection.find()
+  }
+
+  async function getMeals(){
+    return mealCollection.find()
+  }
+
+  async function getPages(){
+    return pageCollection.find()
+  }
+  
 
   app.listen(port, () => {
     console.log(`Listening on port ${port}`);
