@@ -149,12 +149,14 @@ const verifyAuth = async (req, res, next) => {
     res.status(200).send();
   });
 
-  apiRouter.get('/meals', (req, res) =>{
-    res.send(getMeals());
+  apiRouter.get('/meals', async (req, res) =>{
+    const meals = getMeals();
+    res.send(meals);
   });
 
-  apiRouter.get('/posts', (req, res) =>{
-    res.send(getPosts());
+  apiRouter.get('/posts', async (req, res) =>{
+    const posts = await getPosts();
+    res.send(posts);
   });
 
   async function createUser(email, password){
@@ -254,6 +256,41 @@ async function getPages() {
       console.log(`Connection failed to ${url} because ${ex.message}`);
       process.exit(1);
     }
+
+    const post = {
+      id: 1,
+      likes: 0,
+      description: "first post",
+      photo: null,
+      comments: [],
+      author: "devs"
+  }
+    addPost(post);
+    const recipe = {
+      author: "devs",
+       photo: null,
+       name: "test",
+       ingredients: "test",
+       instructions: "test"
+     }
+     addRecipe(recipe);
+     const meal = {
+      author: "devs",
+        name: "test",
+        photo: null,
+        location: "test",
+        description: "test",
+        ingredients: "test"
+    }
+    addMeal(meal);
+
+    const page = {
+      name: "test",
+      photo: null,
+      description: "test"
+    }
+    addPage(page);
+    
   }
 
   main();
