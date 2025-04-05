@@ -144,7 +144,7 @@ const verifyAuth = async (req, res, next) => {
         description: req.body.description,
         ingredients: req.body.ingredients
     }
-    meals.push(meal);
+    addMeal(meal);
     res.status(200).send();
   });
 
@@ -164,7 +164,7 @@ const verifyAuth = async (req, res, next) => {
         token: uuid.v4()
     };
 
-    addUser(user);
+    await addUser(user);
     return user;
   }
 
@@ -203,11 +203,11 @@ const verifyAuth = async (req, res, next) => {
   }
 
   async function addPage(page) {
-    await pageCollection.insertOne(page);
+    await pagesCollection.insertOne(page);
   }
 
   async function addMeal(meal) {
-    await mealCollection.insertOne(meal);
+    await mealsCollection.insertOne(meal);
   }
 
   async function getPosts(){
@@ -219,11 +219,11 @@ const verifyAuth = async (req, res, next) => {
   }
 
   async function getMeals(){
-    return mealCollection.find()
+    return mealsCollection.find()
   }
 
   async function getPages(){
-    return pageCollection.find()
+    return pagesCollection.find()
   }
   
 
