@@ -127,7 +127,7 @@ const verifyAuth = async (req, res, next) => {
       photo: req.body.photo,
       description: req.body.description
     }
-    pages.push(page);
+    addPage(page);
     res.status(200).send();
   });
 
