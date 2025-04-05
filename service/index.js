@@ -44,7 +44,7 @@ apiRouter.put('/auth/login',  async (req, res) => {
         if(await bcrypt.compare(req.body.password, user.password)){
             const token = uuid.v4();
             setAuthCookie(res, token);
-            userCollection.updateOne({user: user.email},{$set:{authToken: token}});
+            userCollection.updateOne({user: user.email},{$set:{token: token}});
             res.send({email: user.email})
             return;
         }
@@ -55,7 +55,7 @@ apiRouter.put('/auth/login',  async (req, res) => {
 apiRouter.delete('/auth/logout', async (req, res) => {
     const user = await getUserByToken(req.cookies[authCookieName]);
     if (user) {
-      await userCollection.updateOne({email: user.email}, {$set:{authToken: ""}})
+      await userCollection.updateOne({email: user.email}, {$set:{token: ""}})
     }
     res.clearCookie(authCookieName);
     res.status(204).end();
