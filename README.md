@@ -160,11 +160,11 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **User registration** - I did not complete this part of the deliverable.
-- [ ] **User login and logout** - I did not complete this part of the deliverable.
-- [ ] **Stores data in MongoDB** - I did not complete this part of the deliverable.
-- [ ] **Stores credentials in MongoDB** - I did not complete this part of the deliverable.
-- [ ] **Restricts functionality based on authentication** - I did not complete this part of the deliverable.
+- [x] **User registration** - cannot login without first registering
+- [x] **User login and logout** - Authtoken is added or removed on login and logout.
+- [x] **Stores data in MongoDB** - Mongo stores all data for posts, meals, recipes, and pages.
+- [x] **Stores credentials in MongoDB** - mongo stores all data for users.
+- [x] **Restricts functionality based on authentication** - Cannot access any other pages without authorization
 
 ## 🚀 WebSocket deliverable
 
