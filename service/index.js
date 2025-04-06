@@ -44,7 +44,7 @@ apiRouter.put('/auth/login',  async (req, res) => {
         if(await bcrypt.compare(req.body.password, user.password)){
             const token = uuid.v4();
             setAuthCookie(res, token);
-            userCollection.updateOne({user: user.email},{$set:{token: token}});
+            await userCollection.updateOne({email: user.email},{$set:{token: token}});
             res.send({email: user.email})
             return;
         }
@@ -62,7 +62,8 @@ apiRouter.delete('/auth/logout', async (req, res) => {
   });
 
   apiRouter.get('/users', async (req, res) =>{
-    res.send(getAllUsers());
+    const users = await getAllUsers();
+    res.send(users);
   });
 
   // Default error handler
@@ -89,7 +90,7 @@ const verifyAuth = async (req, res, next) => {
 
   apiRouter.get('/user/posts', async (req, res) => {
     const result = await getProfilePosts(req);
-    res.send(result);   
+    res.send(result? result: []);   
   });
 
   apiRouter.post('/post', verifyAuth, (req, res)=>{
@@ -118,8 +119,8 @@ const verifyAuth = async (req, res, next) => {
 
   });
 
-  apiRouter.get('/recipes', (req, res)=>{
-    const recipes = getRecipes();
+  apiRouter.get('/recipes', async (req, res)=>{
+    const recipes = await getRecipes();
     res.send(recipes);
   });
 
@@ -133,8 +134,8 @@ const verifyAuth = async (req, res, next) => {
     res.status(200).send();
   });
 
-  apiRouter.get('/pages', (req, res) =>{
-    const pages = getPages();
+  apiRouter.get('/pages', async (req, res) =>{
+    const pages = await getPages();
     res.send(pages);
   });
 
@@ -152,7 +153,7 @@ const verifyAuth = async (req, res, next) => {
   });
 
   apiRouter.get('/meals', async (req, res) =>{
-    const meals = getMeals();
+    const meals = await getMeals();
     res.send(meals);
   });
 
@@ -175,7 +176,8 @@ const verifyAuth = async (req, res, next) => {
 
   async function getProfilePosts(req){
     const user = await getUserByToken(req.cookies[authCookieName]);
-    const result = postCollection.find({author: user});
+    const cursor = postCollection.find({author: user.email});
+    const result = await cursor.toArray();
     return result;  
   } 
 
