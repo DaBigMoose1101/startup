@@ -13,13 +13,13 @@ function peerProxy(httpServer) {
         users.set(parsed.from, socket);
       }
       if(parsed.type === "notify"){
-        let client = users.get(type.to);
+        let client = users.get(parsed.to);
         if (client !== socket && client.readyState === WebSocket.OPEN) {
           client.send(data);
         }
-        else{
-
-        }
+      }
+      if(parsed.type === "disconnect"){
+        users.delete(parsed.from);
       }
     });
 
