@@ -14,9 +14,11 @@ import { CreatePost } from './createpost/createpost';
 import { CreateRecipe } from './createrecipe/createrecipe';
 import { Search } from './search/search';
 import { Nav } from 'react-bootstrap';
+import LikeEventNotifier from './postclass/likeNotifier';
 
 export default function App() {
-  const [userName, setUsername] = React.useState(localStorage.getItem('userName') || '')
+  const [likeNotifier, setLikeNotifier] = React.useState(null);
+  const [userName, setUsername] = React.useState(localStorage.getItem('userName') || '');
   const authState = userName ? true : false;
   const [authorized, setAuthorized] = React.useState(authState);
 
@@ -129,10 +131,12 @@ export default function App() {
         </nav>
       </header>
       <Routes>
-      <Route path='/' element={<Login authorize={(response, username)=>{setAuthorized(response);
+      <Route path='/' element={<Login authorize={(response, username, likeNotifier)=>{
+        setAuthorized(response);
         setUsername(username);
+        setLikeNotifier(likeNotifier);
       } }/>}  exact />
-      <Route path='/home' element={<Home posts={posts}/>}/>
+      <Route path='/home' element={<Home posts={posts} likeNotifier={likeNotifier}/>}/>
       <Route path='/recipes' element={<Recipes recipes={recipes} />} />
       <Route path='/meals' element={<Meals meals={meals}/>} />
       <Route path='/pages' element={<Pages pages={pages}/>} />

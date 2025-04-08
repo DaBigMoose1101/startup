@@ -5,7 +5,8 @@ import {useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import {Post} from '../postclass/post';
 
-export function Home({posts}) {
+
+export function Home({posts, likeNotifier}) {
     const navigate = useNavigate();    
   return (
     <main>
@@ -42,7 +43,7 @@ export function Home({posts}) {
 
             </td>
             <td id="feed">
-                    <div>{posts.map((post, index)=>(<Post post={post} key={index}></Post>))}</div>            
+                    <div>{posts.map((post, index)=>(<Post post={post} key={index} notifier={likeNotifier}></Post>))}</div>            
                      
               </td>
               <td id="side">
