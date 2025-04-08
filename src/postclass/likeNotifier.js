@@ -29,7 +29,7 @@ class LikeEventNotifier{
         };
         this.socket.onmessage = async (msg) =>{
             let mssg = JSON.parse(await msg.data.text);
-            recieveMessage(mssg);
+            this.recieveMessage(mssg);
         };
 
         

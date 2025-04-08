@@ -8,7 +8,7 @@ function peerProxy(httpServer) {
   socketServer.on('connection', (socket) => {
     socket.isAlive = true;
     socket.on('message', async function message(data) {
-      const parsed = JSON.parse(await data.text)
+      const parsed = JSON.parse(await data.text())
       if(parsed.type === "register"){
         users.set(parsed.from, socket);
       }

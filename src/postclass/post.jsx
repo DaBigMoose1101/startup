@@ -2,6 +2,7 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-router-dom';
 import Button from 'react-bootstrap/Button';
+import LikeEventNotifier from './likeNotifier';
 
 
 export function Post({post, key, notifier}){
@@ -10,7 +11,8 @@ export function Post({post, key, notifier}){
         let newLiked = !liked;
         setLiked(newLiked);
         if(newLiked){
-            await notifier.notifyAuthor(post.author);
+            let author = post.author;
+            await notifier.notifyAuthor(author);
             post.likes += 1;
         }
         else{
