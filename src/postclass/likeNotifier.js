@@ -11,21 +11,21 @@ class EventMessage{
 
 class LikeEventNotifier{
     from;
-    to;
     message;
 
-    constructor(){
-        mssg = "";
+    constructor(from){
+        this.from = from;
+        this.message = "";
         let port = window.location.port;
         const protocol = window.location.protocol === "http" ? "ws" : "wss";
         this.socket = new WebSocket(`${protocol}://${window.location.hostname}:${port}/ws`);
         this.socket.onopen = (event) => {
-            let mssg  = new EventMessage(from, '', "register", "");
-            this.socket.send(mssg);
+            let mssg  = new EventMessage(this.from, '', "register", "");
+            this.socket.send(JSON.stringify(mssg));
         };
         this.socket.onclose = (event) => {
-            let mssg = new EventMessage(from, '', "disconnect", "");
-            this.socket.send(mssg);
+            let mssg = new EventMessage(this.from, '', "disconnect", "");
+            this.socket.send(JSON.stringify(mssg));
         };
         this.socket.onmessage = async (msg) =>{
             let mssg = JSON.parse(await msg.data.text);
@@ -47,14 +47,11 @@ class LikeEventNotifier{
         this.from = from;
     }
 
-    setTo(to){
-        this.to = to;
-    }
-
-    notifyAuthor(from, to){
-        let event = new EventMessage(from, to, "notify", `${from} liked your post!`)
+    notifyAuthor(to){
+        let event = new EventMessage(this.from, to, "notify", `${this.from} liked your post!`);
+        this.socket.send(JSON.stringify(event));
     }
 }
 
-const likeEventNotifier = new LikeEventNotifier()
+export default LikeEventNotifier;
 

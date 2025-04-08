@@ -7,18 +7,18 @@ function peerProxy(httpServer) {
 
   socketServer.on('connection', (socket) => {
     socket.isAlive = true;
-    socket.on('message', function message(data) {
-      const parsed = data.toJSON()
+    socket.on('message', async function message(data) {
+      const parsed = JSON.parse(await data.text)
       if(parsed.type === "register"){
         users.set(parsed.from, socket);
       }
-      if(parsed.type === "like_post"){
+      if(parsed.type === "notify"){
         let client = users.get(type.to);
         if (client !== socket && client.readyState === WebSocket.OPEN) {
           client.send(data);
         }
         else{
-          
+
         }
       }
     });
