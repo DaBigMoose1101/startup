@@ -6,10 +6,15 @@ import Button from 'react-bootstrap/Button';
 
 export function Post({post, key, notifier}){
     const [liked, setLiked] = React.useState(false);
-    function likePost(){
-        setLiked(prevLiked => !prevLiked);
-        if(liked){
-            notifier.notifyAuthor(post.author);
+    async function likePost(){
+        let newLiked = !liked;
+        setLiked(newLiked);
+        if(newLiked){
+            await notifier.notifyAuthor(post.author);
+            post.likes += 1;
+        }
+        else{
+            post.likes -= 1;
         }
         
     }
@@ -17,7 +22,7 @@ export function Post({post, key, notifier}){
         <div className="post">
             <img alt="post" src={post.photo} />
             <div className="reactions">
-                <Button variant="secondary" onClick={likePost}>Like</Button>
+                <Button variant="secondary" onClick={likePost}>Like</Button><span>{post.likes}</span>
             </div>            
             <p className="username">{post.author}</p>
             <p>{post.description}</p>
