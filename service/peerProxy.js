@@ -3,17 +3,24 @@ const { WebSocketServer } = require('ws');
 function peerProxy(httpServer) {
   // Create a websocket object
   const socketServer = new WebSocketServer({ server: httpServer });
+  const users = new Map();
 
   socketServer.on('connection', (socket) => {
     socket.isAlive = true;
-
-    // Forward messages to everyone except the sender
     socket.on('message', function message(data) {
-      socketServer.clients.forEach((client) => {
+      const parsed = data.toJSON()
+      if(parsed.type === "register"){
+        users.set(parsed.from, socket);
+      }
+      if(parsed.type === "like_post"){
+        let client = users.get(type.to);
         if (client !== socket && client.readyState === WebSocket.OPEN) {
           client.send(data);
         }
-      });
+        else{
+          
+        }
+      }
     });
 
     // Respond to pong messages by marking the connection alive
