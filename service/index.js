@@ -5,6 +5,7 @@ const bcrypt = require('bcryptjs');
 const uuid = require('uuid');
 const { MongoClient } = require('mongodb');
 const config = require('./dbConfig.json');
+const { peerProxy } = require('./peerProxy.js');
 
 const url = `mongodb+srv://${config.username}:${config.password}@${config.hostname}`;
 
@@ -247,7 +248,8 @@ async function getPages() {
   return pages;
 }
 
-  app.listen(port, () => {
+  const httpService = app.listen(port, () => {
     console.log(`Listening on port ${port}`);
   });
 
+peerProxy(httpService);
