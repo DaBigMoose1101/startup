@@ -12,10 +12,6 @@ export function Post({post, key, notifier}){
         if(newLiked){
             let author = post.author;
             await notifier.notifyAuthor(author);
-            post.likes += 1;
-        }
-        else{
-            post.likes -= 1;
         }
         
     }
@@ -23,7 +19,7 @@ export function Post({post, key, notifier}){
         <div className="post">
             <img alt="post" src={post.photo} />
             <div className="reactions">
-                <Button variant="secondary" onClick={likePost}>Like</Button><span>{post.likes}</span>
+                <Button variant="secondary" onClick={likePost}>Like</Button>
             </div>            
             <p className="username">{post.author}</p>
             <p>{post.description}</p>
