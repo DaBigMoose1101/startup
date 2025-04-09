@@ -10,9 +10,18 @@ export function Home({posts, likeNotifier}) {
     const navigate = useNavigate(); 
     const [notifications, setNotification] = React.useState([]);
 
-    React.useEffect(()=>{
-        setNotification([notifier.getMessage(), ...notifications]);
-    },[]);
+    React.useEffect(() => {
+      const handleMessage = (newMessage) => {
+        setNotification((prev) => [newMessage, ...prev]);
+      };
+    
+      likeNotifier.addListener(handleMessage);
+    
+      return () => {
+        likeNotifier.removeListener(handleMessage); // clean up when component unmounts
+      };
+    }, []);
+    
 
   return (
     <main>
