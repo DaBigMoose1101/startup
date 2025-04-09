@@ -170,8 +170,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Backend listens for WebSocket connection** - I did not complete this part of the deliverable.
-- [ ] **Frontend makes WebSocket connection** - I did not complete this part of the deliverable.
-- [ ] **Data sent over WebSocket connection** - I did not complete this part of the deliverable.
-- [ ] **WebSocket data displayed** - I did not complete this part of the deliverable.
-- [ ] **Application is fully functional** - I did not complete this part of the deliverable.
+- [x] **Backend listens for WebSocket connection** - Keeps track of everyone that is currently online and sends notifications when their post is liked.
+- [x] **Frontend makes WebSocket connection** - Sends and receives messages from the server about liked posts.
+- [x] **Data sent over WebSocket connection** - Message about who liked your post.
+- [x] **WebSocket data displayed** - When someone likes your post the notification shows up on the home page.
+- [x] **Application is fully functional** - The application is functional within the bounds of this class. I will add more functionality over time.
