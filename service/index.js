@@ -89,6 +89,10 @@ const verifyAuth = async (req, res, next) => {
 
   // all login required end points
 
+  apiRouter.get('user/auth', verifyAuth, (req, res) =>{
+    res.status(200).send();
+  });
+
   apiRouter.get('/user/posts', async (req, res) => {
     const result = await getProfilePosts(req);
     res.send(result? result: []);   

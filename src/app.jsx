@@ -18,8 +18,8 @@ import {likeNotifier} from './postclass/likeNotifier';
 
 
 export default function App() {
-  const [userName, setUsername] = React.useState(localStorage.getItem('userName') || '');
-  const authState = userName ? true : false;
+  const [userName, setUsername] = React.useState(localStorage.getItem('username') || '');
+  const authState = userName ? true :false;
   const [authorized, setAuthorized] = React.useState(authState);
 
   const [posts, setPosts] = React.useState([]);
@@ -82,12 +82,24 @@ export default function App() {
         // Logout failed. Assuming offline
       })
       .finally(() => {
-        localStorage.removeItem('userName');
+        localStorage.removeItem('username');
         setAuthorized(false);
+        likeNotifier.disconnect()
       });
   }
 
+  async function isAuthorized(){
+    let response = await fetch('api/user/auth');
+    if(response.ok){
+      const username = localStorage.getItem('username')
+      setAuthorized(true)
+      setUsername(username)
+      likeNotifier.connect(username);
+    }
+  }
+
   React.useEffect(()=>{
+    isAuthorized();
     fetch('/api/posts')
     .then((response) => response.json())
     .then((posts) =>{

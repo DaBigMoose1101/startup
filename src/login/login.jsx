@@ -22,6 +22,7 @@ async function loginOrCreate(endpoint, method, userName, password) {
     });
     if (response?.status === 200) {
         authorize(true, userName);
+        localStorage.setItem('username', userName);
         navigate('/home');
     } else {
         setMessage(response.statusText);
