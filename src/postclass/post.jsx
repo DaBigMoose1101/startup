@@ -2,7 +2,6 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-router-dom';
 import Button from 'react-bootstrap/Button';
-import LikeEventNotifier from './likeNotifier';
 
 
 export function Post({post, key, notifier}){

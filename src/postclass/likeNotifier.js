@@ -10,33 +10,51 @@ class EventMessage{
 }
 
 class LikeEventNotifier{
-    from;
-    message;
+    from = "";
+    message = "";
+    socket;
+    socketOpen = false;
 
-    constructor(from){
-        this.from = from;
-        this.message = "";
+    constructor() {
         let port = window.location.port;
-        const protocol = window.location.protocol === "http" ? "ws" : "wss";
-        this.socket = new WebSocket(`${protocol}://${window.location.hostname}:${port}/ws`);
-        this.socket.onopen = (event) => {
-            let mssg  = new EventMessage(this.from, '', "register", "");
-            this.socket.send(JSON.stringify(mssg));
-        };
-        this.socket.onclose = (event) => {
-            let mssg = new EventMessage(this.from, '', "disconnect", "");
-            this.socket.send(JSON.stringify(mssg));
-        };
-        this.socket.onmessage = async (msg) =>{
-            let mssg = JSON.parse(await msg.data.text);
-            this.recieveMessage(mssg);
+        const protocol = window.location.protocol === "http:" ? "ws" : "wss";
+        this.socket = new WebSocket(`${protocol}//${window.location.hostname}:${port}/ws`);
+
+        this.socket.onopen = () => {
+            this.socketOpen = true;
+            console.log("WebSocket connection established.");
         };
 
+        this.socket.onclose = () => {
+            this.socketOpen = false;
+            console.warn("WebSocket connection closed.");
+        };
+
+        this.socket.onerror = (err) => {
+            console.error("WebSocket error:", err);
+        };
+
+        this.socket.onmessage = async (msg) => {
+            const mssg = JSON.parse(await msg.data.text());
+            this.receiveMessage(mssg);
+        };
         
     }
 
-    recieveMessage(message){
+    receiveMessage(message){
         this.message = message.message;
+    }
+
+    connect(user){
+        this.from = user;
+        let mssg  = new EventMessage(user, '', "register", "");
+        this.socket.send(JSON.stringify(mssg));
+    }
+
+    disconnect(){
+        let mssg = new EventMessage(this.from, '', "disconnect", "");
+        this.socket.send(JSON.stringify(mssg));
+
     }
     
     getMessage(){
@@ -52,6 +70,6 @@ class LikeEventNotifier{
         this.socket.send(JSON.stringify(event));
     }
 }
-
-export default LikeEventNotifier;
+const likeNotifier = new LikeEventNotifier();
+export  {likeNotifier};
 

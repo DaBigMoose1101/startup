@@ -7,7 +7,13 @@ import {Post} from '../postclass/post';
 
 
 export function Home({posts, likeNotifier}) {
-    const navigate = useNavigate();    
+    const navigate = useNavigate(); 
+    const [notifications, setNotification] = React.useState([]);
+
+    React.useEffect(()=>{
+        setNotification([notifier.getMessage(), ...notifications]);
+    },[]);
+
   return (
     <main>
       <div className="page_Specific_Menu">
@@ -29,7 +35,7 @@ export function Home({posts, likeNotifier}) {
           <tr>
             <th>Your Pages</th>
             <th>Feed</th>
-            <th>Recommended</th>
+            <th>Notifications</th>
           </tr>
           </thead>
           <tbody>
@@ -47,13 +53,11 @@ export function Home({posts, likeNotifier}) {
                      
               </td>
               <td id="side">
-
-                    <div>Meal A</div>
-                    <div>Meal B</div>
-                    <div>Meal C</div>
-                    <div>Meal D</div>
-
-                  </td>
+                <div> {notifications.map((notification, index) => (
+                  <div key={index}>{notification}</div>
+                  ))}
+                </div>
+              </td>
           </tr>
           </tbody>
         </table>

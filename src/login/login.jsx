@@ -3,7 +3,6 @@ import './login.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-router-dom';
 import {useNavigate } from 'react-router-dom';
-import LikeEventNotifier from '../postclass/likeNotifier';
 
 
 export function Login({authorize}) {
@@ -22,8 +21,7 @@ async function loginOrCreate(endpoint, method, userName, password) {
       },
     });
     if (response?.status === 200) {
-        const likeNotifier = new LikeEventNotifier(userName);
-        authorize(true, userName, likeNotifier);
+        authorize(true, userName);
         navigate('/home');
     } else {
         setMessage(response.statusText);

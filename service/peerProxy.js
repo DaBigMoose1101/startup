@@ -8,13 +8,15 @@ function peerProxy(httpServer) {
   socketServer.on('connection', (socket) => {
     socket.isAlive = true;
     socket.on('message', async function message(data) {
-      const parsed = JSON.parse(await data.text())
+      const parsed = JSON.parse(data.toString())
+      console.log(parsed);
       if(parsed.type === "register"){
         users.set(parsed.from, socket);
       }
       if(parsed.type === "notify"){
         let client = users.get(parsed.to);
-        if (client !== socket && client.readyState === WebSocket.OPEN) {
+        console.log(client);
+        if (client && client !== socket && client.readyState === WebSocket.OPEN) {
           client.send(data);
         }
       }
